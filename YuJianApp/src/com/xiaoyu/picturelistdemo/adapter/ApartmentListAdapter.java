@@ -142,12 +142,9 @@ public class ApartmentListAdapter extends BaseAdapter {
 		holder.textViewAllCount.setText(String.valueOf(imagetDesc.size()));
 		holder.viewPager.setAdapter(new ViewPagerAdapter(imageViews,
 				holder.textViewNowCount));
-		// holder.viewPager.setAdapter(new MyViewPagerAdapter(imageViews));
-		// TODO 添加viewpager滑动变化
+		// 添加viewpager滑动变化
 		holder.viewPager.setOnPageChangeListener(new ViewPagerAdapter(
 				imageViews, holder.textViewNowCount));
-		// holder.viewPager.setOnPageChangeListener(new MyPagerChangeListener(
-		// holder.textViewNowCount));
 	}
 
 	class ViewHolder {
@@ -159,68 +156,5 @@ public class ApartmentListAdapter extends BaseAdapter {
 		TextView textViewAllCount;
 		ViewGroup viewGroup;
 	}
-
-	// public class MyViewPagerAdapter extends PagerAdapter {
-	// private List<ScaleImageView> mListViews;
-	//
-	// public MyViewPagerAdapter(List<ScaleImageView> mListViews) {
-	// this.mListViews = mListViews;
-	// }
-	//
-	// @Override
-	// public void destroyItem(ViewGroup container, int position, Object object)
-	// {
-	// if (position >= getCount())
-	// return;
-	// container.removeView(mListViews.get(position));
-	// }
-	//
-	// @Override
-	// public Object instantiateItem(ViewGroup container, int position) {
-	// if (position >= getCount())
-	// return null;
-	// container.addView(mListViews.get(position), 0);
-	// return mListViews.get(position);
-	// }
-	//
-	// @Override
-	// public int getCount() {
-	// if (mListViews == null)
-	// return 0;
-	// return mListViews.size();
-	// }
-	//
-	// @Override
-	// public boolean isViewFromObject(View v, Object o) {
-	// return v == o;
-	// }
-	//
-	// }
-
-	// private class MyPageChangeListener implements OnPageChangeListener {
-	//
-	// private TextView textViewNowCount;
-	//
-	// public MyPageChangeListener(TextView textViewNowCount) {
-	// this.textViewNowCount = textViewNowCount;
-	// textViewNowCount.setText(String.valueOf(1));
-	// }
-	//
-	// // @Override
-	// public void onPageScrollStateChanged(int position) {
-	// }
-	//
-	// // 当当前页面被滑动时调用
-	// // @Override
-	// public void onPageScrolled(int arg0, float arg1, int arg2) {
-	//
-	// }
-	//
-	// // 当新的页面被选中时调用
-	// // @Override
-	// public void onPageSelected(int arg0) {
-	// textViewNowCount.setText(arg0 + 1 + "");
-	// }
-	// }
 
 }

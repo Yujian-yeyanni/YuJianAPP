@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#00ff00</color>
+    <color name="blue">#0000ff</color>
+    <color name="trans">#00000000</color>
+    
+    <!-- 客房列表 -->
+    <color name="color_house_list_border">#C7C7C7</color>
+    <color name="color_apartment_bg">#F6F6F6</color>
+    <color name="bg_search_color">#DE3031</color>
+    
+    <!-- 客房详情 -->
+    <color name="bg_house_detail">#EDEDED</color>
+
+</resources>

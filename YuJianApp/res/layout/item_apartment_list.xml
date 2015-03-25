@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_wrap_content"
+    android:background="@color/color_apartment_bg"
+    android:padding="@dimen/standard_padding" >
+
+    <include
+        android:id="@+id/include_item_house_viewpager"
+        layout="@layout/layout_comm_viewpager" />
+
+    <RelativeLayout
+        android:id="@+id/rl_house_desc"
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:layout_below="@id/include_item_house_viewpager"
+        android:background="@color/color_apartment_bg" >
+
+        <View
+            style="@style/style_horizontal_line"
+            android:layout_alignParentBottom="true" />
+
+        <TextView
+            android:id="@+id/tv_item_apartment_house_address"
+            style="@style/style_text_house_desc"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_item_apartment_house_area"
+            style="@style/style_text_house_desc"
+            android:layout_below="@id/tv_item_apartment_house_address" />
+
+        <TextView
+            android:id="@+id/tv_item_apartment_house_price"
+            style="@style/style_text_house_price"
+            android:layout_marginBottom="@dimen/xsmall_margin"
+            android:layout_toLeftOf="@+id/tv_item_apartment_price_icon"
+            android:textColor="@color/red"
+            android:textSize="@dimen/xLarge_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_item_apartment_price_icon"
+            style="@style/style_text_house_price"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/xsmall_margin"
+            android:gravity="bottom"
+            android:text="@string/str_house_price_suffix"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <View style="@style/style_vertical_line" />
+
+    <View
+        style="@style/style_vertical_line"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

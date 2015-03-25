@@ -1,0 +1,44 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Paddings -->
+    <dimen name="standard_padding">10dp</dimen>
+    <dimen name="small_padding">5dp</dimen>
+    <dimen name="xsmall_padding">3dp</dimen>
+    <dimen name="medium_padding">15dp</dimen>
+    <dimen name="large_padding">20dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="standard_margin">10dp</dimen>
+    <dimen name="xsmall_margin">3dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="medium_margin">15dp</dimen>
+    <dimen name="large_margin">20dp</dimen>
+    <dimen name="large_medium_margin">25dp</dimen>
+    <dimen name="xlarge_margin">30dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="xsmall_text">8sp</dimen>
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="small_medium_text">12sp</dimen>
+    <dimen name="medium_text">14sp</dimen>
+    <dimen name="medium_large_text">16sp</dimen>
+    <dimen name="large_text">18sp</dimen>
+    <dimen name="xLarge_text">20sp</dimen>
+    <dimen name="xxLarge_text">25sp</dimen>
+    <dimen name="xxxLarge_text">30sp</dimen>
+    
+    <dimen name="apartment_list_viewpager_height">180dp</dimen>
+    <dimen name="apartment_list_filter_height">35dp</dimen>
+    
+    <dimen name="line_height_or_width">1dp</dimen>
+    
+    <!-- comm top -->
+    <dimen name="comm_top_height">50dp</dimen>
+    <dimen name="comm_top_search_height">40dp</dimen>
+    <dimen name="comm_top_search_width">40dp</dimen>
+
+</resources>

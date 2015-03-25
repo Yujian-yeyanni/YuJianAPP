@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PictureListDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <!-- 客房列表-客房描述 -->
+    <string name="str_apartment_address_desc">%1$s-%2$s-%3$s\t\t%4$s房间</string>
+    <string name="str_apartment_area_desc">%1$sm²-朝%2$s-%3$s室-%4$s层</string>
+    
+    <string name="str_apartment_italic">/</string>
+    <string name="str_house_price_suffix">元/月</string>
+    <string name="str_filter">条件筛选</string>
+    
+    <string name="str_house_detail_house_des">宜家风~赠wifi~定期保洁~年轻人自己的家\n【松江区-九亭】</string>
+
+</resources>

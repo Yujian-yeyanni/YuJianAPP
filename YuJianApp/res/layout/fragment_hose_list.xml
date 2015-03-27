@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include_house_list"
+        layout="@layout/comm_search_top" />
+
+    <com.xiaoyu.rentingdemo.widget.MyListView
+        android:id="@+id/lv_apartment_pictures"
+        style="@style/layout_fill_parent"
+        android:layout_below="@id/include_house_list"
+        android:layout_marginBottom="@dimen/apartment_list_filter_height"
+        android:divider="@color/trans" >
+    </com.xiaoyu.rentingdemo.widget.MyListView>
+
+    <TextView
+        android:id="@+id/tv_house_list_select"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/apartment_list_filter_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_search_color"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/str_filter"
+        android:textColor="@color/white"
+        android:textSize="@dimen/large_text" />
+
+</RelativeLayout>

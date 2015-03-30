@@ -70,6 +70,12 @@ public class HouseListFragment extends BaseFragment implements
 	}
 
 	@Override
+	public void initCommTop(View rootView) {
+		super.initCommTop(rootView);
+		textViewTitle.setVisibility(View.GONE);
+	}
+
+	@Override
 	public void setLinstener() {
 		super.setLinstener();
 		editTextSearch.setOnEditorActionListener(this);

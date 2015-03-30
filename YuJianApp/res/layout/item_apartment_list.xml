@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/layout_wrap_content"
     android:background="@color/color_apartment_bg"
+    android:descendantFocusability="blocksDescendants"
     android:padding="@dimen/standard_padding" >
 
     <include
@@ -14,6 +15,12 @@
         android:layout_height="58dp"
         android:layout_below="@id/include_item_house_viewpager"
         android:background="@color/color_apartment_bg" >
+
+        <View style="@style/style_vertical_line" />
+
+        <View
+            style="@style/style_vertical_line"
+            android:layout_alignParentRight="true" />
 
         <View
             style="@style/style_horizontal_line"
@@ -47,11 +54,5 @@
             android:text="@string/str_house_price_suffix"
             android:textColor="@color/black" />
     </RelativeLayout>
-
-    <View style="@style/style_vertical_line" />
-
-    <View
-        style="@style/style_vertical_line"
-        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

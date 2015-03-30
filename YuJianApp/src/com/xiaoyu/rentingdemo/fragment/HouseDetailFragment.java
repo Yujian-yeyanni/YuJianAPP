@@ -3,6 +3,17 @@ package com.xiaoyu.rentingdemo.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.UiSettings;
+import com.baidu.mapapi.model.LatLng;
 import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.adapter.ViewPagerAdapter;
 import com.xiaoyu.rentingdemo.data.bean.RoomBean;
@@ -18,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,7 +42,6 @@ public class HouseDetailFragment extends BaseFragment implements
 	private ViewPager viewPager;
 	private TextView textViewNowCount;
 	private TextView textViewAllCount;
-	private ScaleImageView scaleImageView;
 
 	private TextView textViewRoomDesc;
 	private TextView textViewRoomPrice;
@@ -44,10 +55,18 @@ public class HouseDetailFragment extends BaseFragment implements
 	private LinearLayout layoutHouseCondition;
 
 	// TODO add mapview
+	// // private MapView mMapView;
+	// private BaiduMap baiduMap;
+	// private UiSettings mUiSettings;
 
 	private List<String> roomPictureList;
 	private RoomBean roomBean;
 	private List<RoomBean> houseRoomList;
+
+	// 显示地图
+	private ScaleImageView scaleImageView;
+
+	// private String imageString ;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -79,8 +98,6 @@ public class HouseDetailFragment extends BaseFragment implements
 				.findViewById(R.id.tv_image_now_count);
 		textViewAllCount = (TextView) viewGroupPager
 				.findViewById(R.id.tv_image_all_count);
-		scaleImageView = (ScaleImageView) viewGroupPager
-				.findViewById(R.id.siv_viewpager);
 
 		textViewRoomDesc = (TextView) rootView
 				.findViewById(R.id.tv_house_detail_desc);
@@ -103,9 +120,15 @@ public class HouseDetailFragment extends BaseFragment implements
 				.findViewById(R.id.tv_house_detail_house_address);
 		layoutHouseCondition = (LinearLayout) rootView
 				.findViewById(R.id.ll_house_detail_house_basic_info);
+		scaleImageView = (ScaleImageView) rootView
+				.findViewById(R.id.siv_house_detail_map_image);
+		// mMapView = (MapView)
+		// rootView.findViewById(R.id.house_detail_bmapView);
+		// baiduMap = mMapView.getMap();
+		// mUiSettings = baiduMap.getUiSettings();
 
 		setData();
-
+		initMapView();
 		setLinstener();
 	}
 
@@ -179,10 +202,62 @@ public class HouseDetailFragment extends BaseFragment implements
 
 	}
 
+	/**
+	 * config baidumap
+	 */
+	private void initMapView() {
+		scaleImageView.setVisibility(View.VISIBLE);
+		scaleImageView.setImageWidth(screenWidth);
+		scaleImageView.setImageHeight(300);
+
+		String imageUrlFormat = Constants.BaiduImageURL;
+		String imageUrlInfo = String.format(
+				imageUrlFormat,
+				String.valueOf(screenWidth),
+				String.valueOf(300),
+				Utils.toUtf8String(roomBean.getH_city()
+						+ roomBean.getH_villageName()),
+				Utils.toUtf8String(roomBean.getH_city()
+						+ roomBean.getH_villageName()),
+				Utils.toUtf8String(roomBean.getH_villageName()),
+				Utils.toUtf8String(roomBean.getH_city()
+						+ roomBean.getH_villageName()));
+		FinalBitmapUtils.getInstance().displayImage(imageUrlInfo,
+				scaleImageView);
+		// 不显示比例尺控件
+		// mMapView.showScaleControl(false);
+		// // 不显示缩放控件
+		// mMapView.showZoomControls(false);
+		// mUiSettings.setScrollGesturesEnabled(false);
+		// mUiSettings.setZoomGesturesEnabled(false);
+		// MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
+		// baiduMap.setMapStatus(msu);
+		// mUiSettings.setAllGesturesEnabled(false);
+		//
+		// // add marker to mapview,
+		// // TODO CHANGE REAL LATLNG
+		// LatLng point = new LatLng(31.22, 121.48);
+		// BitmapDescriptor bitmap = BitmapDescriptorFactory
+		// .fromResource(R.drawable.ic_mark);
+		// OverlayOptions option = new MarkerOptions().position(point)
+		// .icon(bitmap).zIndex(5);
+		// baiduMap.addOverlay(option);
+		// setMapCenter(point);
+	}
+
+	// set map center
+	// private void setMapCenter(LatLng latLng) {
+	// // 定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
+	// MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory
+	// .newLatLng(latLng);
+	// baiduMap.animateMapStatus(mMapStatusUpdate);
+	// }
+
 	@Override
 	public void initCommTop(View rootView) {
 		super.initCommTop(rootView);
 		editTextSearch.setVisibility(View.GONE);
+		textViewTitle.setVisibility(View.GONE);
 		imageViewPersonal.setVisibility(View.GONE);
 		imageViewMenu.setVisibility(View.VISIBLE);
 		imageViewMenu.setBackgroundResource(R.drawable.icon_back);
@@ -197,7 +272,6 @@ public class HouseDetailFragment extends BaseFragment implements
 
 	private void initViewPager() {
 		List<ScaleImageView> imageViews = new ArrayList<ScaleImageView>();
-		scaleImageView.setVisibility(View.GONE);
 		if (roomPictureList == null) {
 			return;
 		}
@@ -206,6 +280,7 @@ public class HouseDetailFragment extends BaseFragment implements
 			ScaleImageView image = new ScaleImageView(getActivity());
 			image.setImageWidth(screenWidth);
 			image.setImageHeight((int) (screenHeight / 3));
+			// FinalBitmapUtils.getInstance().displayImage(imageString, image);
 			FinalBitmapUtils.getInstance().displayImage(
 					DataSource.getImage_server() + photosDesc
 							+ Constants.photosSize, image);
@@ -216,16 +291,15 @@ public class HouseDetailFragment extends BaseFragment implements
 
 		viewPager.setCurrentItem(imageViews.size() * 100);
 		viewPager.setAdapter(new ViewPagerAdapter(imageViews, textViewNowCount,
-				getActivity(), scaleImageView));
+				getActivity(), null));
 		viewPager.setOnPageChangeListener(new ViewPagerAdapter(imageViews,
-				textViewNowCount, getActivity(), scaleImageView));
+				textViewNowCount, getActivity(), null));
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.iv_comm_top_menu:
-			// TODO GO BACK
 			fragmentPopStack();
 			break;
 		default:
@@ -234,4 +308,18 @@ public class HouseDetailFragment extends BaseFragment implements
 
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+	}
 }

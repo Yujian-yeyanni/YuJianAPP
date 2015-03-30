@@ -10,6 +10,12 @@
         android:layout_height="wrap_content" >
     </android.support.v4.view.ViewPager>
 
+    <com.xiaoyu.rentingdemo.widget.ScaleImageView
+        android:id="@+id/siv_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </com.xiaoyu.rentingdemo.widget.ScaleImageView>
+
     <RelativeLayout
         android:id="@+id/rl_upload_image_bottom"
         android:layout_width="100dp"

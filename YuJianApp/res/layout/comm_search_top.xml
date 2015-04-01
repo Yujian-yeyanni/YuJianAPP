@@ -5,26 +5,76 @@
     android:background="@color/bg_search_color"
     android:gravity="center_vertical" >
 
-    <ImageView
-        android:id="@+id/iv_comm_top_menu"
-        style="@style/style_comm_top_imageview"
-        android:layout_alignParentLeft="true"
+    <TextView
+        android:id="@+id/tv_comm_top_city"
+        style="@style/style_comm_title_text"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/standard_margin"
-        android:background="@drawable/ic_launcher" />
+        android:text="上海" />
 
-    <EditText
-        android:id="@+id/et_comm_top_search"
+    <LinearLayout
+        android:id="@+id/comm_ll_title_leftback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="23dp"
+            android:background="@drawable/comm_title_back_arrow" />
+
+        <TextView
+            style="@style/style_comm_title_text"
+            android:layout_marginLeft="3dp"
+            android:text="返回" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_comm_top_search"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/comm_top_search_height"
-        android:layout_toLeftOf="@+id/iv_comm_top_personal"
-        android:layout_toRightOf="@id/iv_comm_top_menu"
-        android:imeOptions="actionSearch" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/bg_search_frame" >
+
+        <EditText
+            android:id="@+id/et_comm_top_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/comm_top_search_height"
+            android:inputType="text"
+            android:layout_centerVertical="true"
+            android:background="@color/trans"
+            android:imeOptions="actionSearch"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/tv_comm_top_senior_search"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/comm_top_search_height"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:paddingRight="@dimen/small_padding"
+            android:text="高级搜索"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_comm_top_title"
+        style="@style/style_comm_title_text"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="位置及周边" />
 
     <ImageView
         android:id="@+id/iv_comm_top_personal"
         style="@style/style_comm_top_imageview"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/standard_margin"
-        android:background="@drawable/ic_launcher" />
+        android:background="@drawable/ic_personal" />
 
 </RelativeLayout>

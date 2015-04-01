@@ -2,27 +2,39 @@ package com.xiaoyu.rentingdemo.fragment;
 
 import com.xiaoyu.rentingdemo.BaseActivity;
 import com.xiaoyu.rentingdemo.R;
+import com.xiaoyu.rentingdemo.util.MLog;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements OnClickListener,
+		TextWatcher {
 
 	protected int layoutId;
 	private View view;
 
 	protected ViewGroup viewGroup;
+	protected RelativeLayout relativeLayoutTopSearch;
+	protected LinearLayout layouLeftBack;
 	protected EditText editTextSearch;
-	protected ImageView imageViewMenu;
+	protected TextView textViewTitle;
 	protected ImageView imageViewPersonal;
+	protected TextView textViewCity;
+	protected TextView textViewSeniorSearch;
 	protected int screenWidth;
 	protected int screenHeight;
 
@@ -55,18 +67,35 @@ public class BaseFragment extends Fragment {
 		initCommTop(rootView);
 	}
 
+	/**
+	 * init comm top
+	 * 
+	 * @param rootView
+	 */
 	public void initCommTop(View rootView) {
 		viewGroup = (ViewGroup) rootView.findViewById(R.id.include_house_list);
+		relativeLayoutTopSearch = (RelativeLayout) viewGroup
+				.findViewById(R.id.rl_comm_top_search);
 		editTextSearch = (EditText) viewGroup
 				.findViewById(R.id.et_comm_top_search);
-		imageViewMenu = (ImageView) viewGroup
-				.findViewById(R.id.iv_comm_top_menu);
+		textViewSeniorSearch = (TextView) viewGroup
+				.findViewById(R.id.tv_comm_top_senior_search);
+		textViewTitle = (TextView) viewGroup
+				.findViewById(R.id.tv_comm_top_title);
+		layouLeftBack = (LinearLayout) viewGroup
+				.findViewById(R.id.comm_ll_title_leftback);
 		imageViewPersonal = (ImageView) viewGroup
 				.findViewById(R.id.iv_comm_top_personal);
+		textViewCity = (TextView) viewGroup.findViewById(R.id.tv_comm_top_city);
+		textViewSeniorSearch.setVisibility(View.VISIBLE);
 	}
 
 	public void setLinstener() {
-
+		layouLeftBack.setOnClickListener(this);
+		imageViewPersonal.setOnClickListener(this);
+		editTextSearch.addTextChangedListener(this);
+		editTextSearch.setOnClickListener(this);
+		textViewSeniorSearch.setOnClickListener(this);
 	}
 
 	/**
@@ -103,6 +132,41 @@ public class BaseFragment extends Fragment {
 	protected void fragmentPopStack() {
 		if (getFragmentManager() != null) {
 			getFragmentManager().popBackStack();
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.comm_ll_title_leftback:
+			fragmentPopStack();
+			break;
+		case R.id.iv_comm_top_personal:
+			skipToFragment(new PersonalFragment(), R.id.fl_content, true);
+			break;
+		case R.id.tv_comm_top_senior_search:
+			//TODO SKIP TO SENIOR SEARCH PAGE
+			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void afterTextChanged(Editable editable) {
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			int arg3) {
+	}
+
+	@Override
+	public void onTextChanged(CharSequence s, int arg1, int arg2, int arg3) {
+		if (s.length()>0) {
+			textViewSeniorSearch.setVisibility(View.GONE);
+		}else {
+			textViewSeniorSearch.setVisibility(View.VISIBLE);
 		}
 	}
 

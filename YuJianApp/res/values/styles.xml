@@ -31,19 +31,19 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-    
-    <style name="style_text_on_viewpaget" parent="@style/layout_wrap_content" >
+
+    <style name="style_text_on_viewpaget" parent="@style/layout_wrap_content">
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/large_text</item>
     </style>
-    
+
     <style name="style_text_house_desc" parent="@style/layout_wrap_content">
         <item name="android:layout_height">29dp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:padding">@dimen/small_padding</item>
     </style>
-    
+
     <style name="style_text_house_price">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">24dp</item>
@@ -52,18 +52,82 @@
 
     <style name="style_vertical_line">
         <item name="android:layout_width">@dimen/line_height_or_width</item>
-        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/color_house_list_border</item>
     </style>
-    
+
     <style name="style_horizontal_line">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/line_height_or_width</item>
         <item name="android:background">@color/color_house_list_border</item>
     </style>
-    
+
     <style name="style_comm_top_imageview">
         <item name="android:layout_width">@dimen/comm_top_search_width</item>
         <item name="android:layout_height">@dimen/comm_top_search_height</item>
     </style>
+
+    <!-- 客房详情 -->
+    <style name="style_house_detail_red_title">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@color/bg_color_title</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/standard_padding</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="style_house_detail_title" parent="@style/layout_wrap_content">
+        <item name="android:padding">@dimen/standard_padding</item>
+        <item name="android:textColor">@color/color_title_text</item>
+    </style>
+
+    <style name="style_house_detail_content" parent="@style/layout_wrap_content">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textColor">@color/color_content_text</item>
+    </style>
+    <!-- 虚线 -->
+    <style name="style_house_detail_dashedline">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">20px</item>
+        <item name="android:layout_marginLeft">@dimen/standard_margin</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin</item>
+    </style>
+
+    <style name="style_ll_house_detail">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- 位置及周边 -->
+    <style name="style_relativelayout_address_around_bottom">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:focusable">false</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <style name="style_imageview_address_around_bottom">
+        <item name="android:layout_width">@dimen/image_address_around_width_height</item>
+        <item name="android:layout_height">@dimen/image_address_around_width_height</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="style_textview_address_around_bottom">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">@dimen/medium_large_text</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="style_comm_title_text" parent="@style/layout_wrap_content">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

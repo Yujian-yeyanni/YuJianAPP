@@ -2,12 +2,17 @@ package com.xiaoyu.rentingdemo.fragment;
 
 import com.baidu.mapapi.cloud.NearbySearchInfo;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
+import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.offline.MKOLSearchRecord;
+import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
 import com.baidu.mapapi.overlayutil.PoiOverlay;
 import com.baidu.mapapi.search.core.CityInfo;
@@ -30,6 +35,7 @@ import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.util.Constants;
 import com.xiaoyu.rentingdemo.util.StringUtil;
 import com.xiaoyu.rentingdemo.util.ToastUtils;
+import com.xiaoyu.rentingdemo.util.Utils;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -49,7 +55,8 @@ import android.widget.Toast;
  * 
  */
 public class AddressAroundFragment extends BaseFragment implements
-		OnGetGeoCoderResultListener, OnGetPoiSearchResultListener {
+		OnGetGeoCoderResultListener, OnGetPoiSearchResultListener,
+		OnMarkerClickListener {
 
 	private static final String TAG = AddressAroundFragment.class.getName();
 
@@ -71,7 +78,7 @@ public class AddressAroundFragment extends BaseFragment implements
 	private TextView textViewMarket;
 	private TextView textViewEntertainment;
 
-	//equipment image
+	// equipment image
 	private ImageView imageViewMetro;
 	private ImageView imageViewBus;
 	private ImageView imageViewRestaurant;
@@ -88,6 +95,7 @@ public class AddressAroundFragment extends BaseFragment implements
 
 	private String searchStr = "";
 	private GeoCodeResult geoCodeResult;
+	private PoiResult poiResult;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -278,6 +286,10 @@ public class AddressAroundFragment extends BaseFragment implements
 		}
 	}
 
+	/**
+	 * SET ICON OF OVERLAYER,AND ADD DETAIL CLICK LESTENER
+	 */
+	@SuppressWarnings("unused")
 	@Override
 	public void onGetPoiResult(PoiResult result) {
 		searchStr = "";
@@ -289,11 +301,25 @@ public class AddressAroundFragment extends BaseFragment implements
 		if (result.error == SearchResult.ERRORNO.NO_ERROR) {
 			// TODO JUDGE MBAIDUMAP IS NULL, SHOW NULLPOINTEXCEPTION
 			mBaiduMap.clear();
-			PoiOverlay overlay = new MyPoiOverlay(mBaiduMap);
-			mBaiduMap.setOnMarkerClickListener(overlay);
-			overlay.setData(result);
-			overlay.addToMap();
-			overlay.zoomToSpan();
+			mBaiduMap.addOverlay(new MarkerOptions().position(
+					geoCodeResult.getLocation()).icon(
+					BitmapDescriptorFactory.fromResource(R.drawable.ic_mark)));
+			mBaiduMap.setMapStatus(MapStatusUpdateFactory
+					.newLatLng(geoCodeResult.getLocation()));
+			if (result == null) {
+				return;
+			}
+			poiResult = result;
+			for (int i = 0; i < result.getAllPoi().size(); i++) {
+				PoiInfo poiInfo = result.getAllPoi().get(i);
+				// overlay.removeFromMap();
+				mBaiduMap.addOverlay(new MarkerOptions().position(
+						poiInfo.location).icon(
+						BitmapDescriptorFactory.fromBitmap(Utils.readBitMap(
+								getActivity(), R.drawable.ic_launcher))));
+				// overlay.addToMap();
+			}
+			mBaiduMap.setOnMarkerClickListener(this);
 			return;
 		}
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_KEYWORD) {
@@ -309,34 +335,29 @@ public class AddressAroundFragment extends BaseFragment implements
 		}
 	}
 
-	private class MyPoiOverlay extends PoiOverlay {
-
-		public MyPoiOverlay(BaiduMap baiduMap) {
-			super(baiduMap);
-			mBaiduMap.addOverlay(new MarkerOptions().position(
-					geoCodeResult.getLocation()).icon(
-					BitmapDescriptorFactory.fromResource(R.drawable.ic_mark)));
-			mBaiduMap.setMapStatus(MapStatusUpdateFactory
-					.newLatLng(geoCodeResult.getLocation()));
-		}
-
-		@Override
-		public boolean onPoiClick(int index) {
-			super.onPoiClick(index);
-			PoiInfo poi = getPoiResult().getAllPoi().get(index);
-			// if (poi.hasCaterDetails) {
-			poiSearch.searchPoiDetail((new PoiDetailSearchOption())
-					.poiUid(poi.uid));
-			// }
-			return true;
-		}
-	}
-
 	/**
 	 * update bottom layout show
 	 * 
 	 * @param viewId
 	 */
 	private void changeBottomFocusable(int viewId) {
+
+	}
+
+	@SuppressWarnings("unused")
+	@Override
+	public boolean onMarkerClick(Marker marker) {
+		final LatLng ll = marker.getPosition();
+		PoiInfo info = null;
+		for (PoiInfo poiInfo : poiResult.getAllPoi()) {
+			if (poiInfo.location == ll) {
+				info = poiInfo;
+			}
+		}
+		if (info == null) {
+			return false;
+		}
+		poiSearch.searchPoiDetail(new PoiDetailSearchOption().poiUid(info.uid));
+		return true;
 	}
 }

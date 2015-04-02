@@ -3,6 +3,8 @@ package com.xiaoyu.rentingdemo.util;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -92,6 +94,19 @@ public class Utils {
 	}
 
 	/**
+	 * GET UPPERCASE FORM STRING
+	 * 
+	 * @param strRoomNumber
+	 * @return
+	 */
+	public static String getUpperCase(String strRoomNumber) {
+		String regEx = "[^A-Z]";
+		Pattern p = Pattern.compile(regEx);
+		Matcher m = p.matcher(strRoomNumber);
+		return m.replaceAll("").trim();
+	}
+
+	/**
 	 * 
 	 * @param context
 	 * @param dp
@@ -111,17 +126,6 @@ public class Utils {
 	public static int Px2Dp(Context context, float px) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (px / scale + 0.5f);
-	}
-
-	/**
-	 * GET UPPERCASE FORM STRING
-	 * 
-	 * @param strRoomNumber
-	 * @return
-	 */
-	public static String getUpperCase(String strRoomNumber) {
-
-		return "";
 	}
 
 	/**

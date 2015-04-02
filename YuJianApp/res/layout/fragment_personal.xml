@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include_house_list"
+        layout="@layout/comm_search_top" />
+
+    <RelativeLayout
+        android:id="@+id/rl_login_page_unlogin"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/include_house_list"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/standard_margin"
+        android:paddingRight="@dimen/standard_margin"
+        android:visibility="gone" >
+
+        <EditText
+            android:id="@+id/et_login_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_input_username" />
+
+        <EditText
+            android:id="@+id/et_login_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_login_username"
+            android:hint="@string/str_input_password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_login_password"
+            android:text="@string/str_login" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/btn_login"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:text="@string/str_register" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_have_login"
+        style="@style/layout_fill_parent"
+        android:layout_below="@id/include_house_list"
+        android:background="@color/white"
+        android:visibility="gone" >
+
+        <com.xiaoyu.rentingdemo.widget.ScaleImageView
+            android:id="@+id/siv_personal_page_house_image"
+            android:layout_width="fill_parent"
+            android:layout_height="130dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/bg_test"
+             />
+
+        <ImageView
+            android:id="@+id/iv_personal_page_photo"
+            android:layout_width="@dimen/personal_photo_width"
+            android:layout_height="@dimen/personal_photo_height"
+            android:layout_marginLeft="@dimen/large_padding"
+            android:layout_marginTop="110dp"
+            android:background="@drawable/comm_headimg_def" />
+
+        <ListView
+            android:id="@+id/lv_personal_page"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/iv_personal_page_photo"
+            android:layout_marginTop="@dimen/standard_margin" >
+        </ListView>
+    </RelativeLayout>
+
+</RelativeLayout>

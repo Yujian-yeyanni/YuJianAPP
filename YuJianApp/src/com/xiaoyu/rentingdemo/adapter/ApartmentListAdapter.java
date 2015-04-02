@@ -147,7 +147,8 @@ public class ApartmentListAdapter extends BaseAdapter {
 				R.string.str_apartment_address_desc).toString();
 		String strAddressInfo = String.format(straddressFormat,
 				roomBean.getH_district(), roomBean.getH_street(),
-				roomBean.getH_villageName(), roomBean.getRoomName());
+				roomBean.getH_villageName(),
+				Utils.getUpperCase(roomBean.getRoomName()));
 		holder.textViewHouseAddress.setText(strAddressInfo);
 		String strAreaFromat = context
 				.getText(R.string.str_apartment_area_desc).toString();

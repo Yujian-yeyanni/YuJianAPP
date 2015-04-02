@@ -138,8 +138,9 @@ public class HouseDetailFragment extends BaseFragment implements
 		textViewRoomPrice.setText("￥" + roomBean.getMinPrice() / 100);
 		String strTypeFormat = getActivity().getText(
 				R.string.str_format_house_type).toString();
+		//TODO change room name show
 		String strTypeInfo = String.format(strTypeFormat,
-				roomBean.getRoomName());
+				Utils.getUpperCase(roomBean.getRoomName()));
 		textViewRoomType.setText(strTypeInfo);
 		textViewRoomAddress.setText(roomBean.getH_address());
 		textViewPublicFacilities.setText("储物区" + " " + "餐桌" + " " + "餐椅" + " "
@@ -192,7 +193,7 @@ public class HouseDetailFragment extends BaseFragment implements
 			String strConditionFormat = getActivity().getText(
 					R.string.str_format_house_condition).toString();
 			String strConditonInfo = String.format(strConditionFormat,
-					roomBean.getRoomName(), roomBean.getTowards(),
+					Utils.getUpperCase(roomBean.getRoomName()), roomBean.getTowards(),
 					roomBean.getRoomArea());
 			textViewRoomCondition.setText(strConditonInfo);
 			textViewRoomPrice.setText("￥" + roomBean.getMinPrice() / 100);
@@ -310,4 +311,5 @@ public class HouseDetailFragment extends BaseFragment implements
 	public void onPause() {
 		super.onPause();
 	}
+	
 }

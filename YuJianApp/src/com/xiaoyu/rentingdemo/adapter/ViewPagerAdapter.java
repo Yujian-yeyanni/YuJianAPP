@@ -71,6 +71,9 @@ public class ViewPagerAdapter extends PagerAdapter implements
 	@Override
 	public void onPageScrollStateChanged(int state) {
 		System.out.println("yyn");
+		if (imageView == null) {
+			return;
+		}
 		imageView.setVisibility(View.GONE);
 	}
 

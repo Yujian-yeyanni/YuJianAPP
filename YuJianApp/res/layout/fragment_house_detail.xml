@@ -1,41 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/layout_fill_parent"
     android:background="@color/bg_house_detail" >
 
-    <LinearLayout
+    <include
+        android:id="@+id/include_house_list"
+        layout="@layout/comm_search_top" />
+
+    <ScrollView
         style="@style/layout_fill_parent"
-        android:orientation="vertical" >
-
-        <include
-            android:id="@+id/include_house_detail_viewpager"
-            layout="@layout/layout_comm_viewpager" />
-
-        <TextView
-            android:id="@+id/tv_house_detail_desc"
-            style="@style/layout_wrap_content"
-            android:lineSpacingExtra="@dimen/medium_padding"
-            android:text="@string/str_house_detail_house_des"
-            android:textColor="@color/black"
-            android:textSize="@dimen/medium_large_text"
-            android:textStyle="bold" />
-
-        <View style="@style/style_horizontal_line" />
+        android:layout_below="@id/include_house_list"
+        android:layout_marginBottom="50dp"
+        android:scrollbars="none" >
 
         <LinearLayout
-            android:id="@+id/rl_house_detail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            style="@style/layout_fill_parent"
+            android:descendantFocusability="blocksDescendants"
             android:orientation="vertical" >
-            <TextView 
-                android:id="@+id/tv_house_detail_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/medium_text"
-                android:textColor="@color/red"
-                android:text="￥1800"/>
-        </LinearLayout>
-    </LinearLayout>
 
-</ScrollView>
+            <include
+                android:id="@+id/include_house_detail_viewpager"
+                layout="@layout/layout_comm_viewpager" />
+
+            <TextView
+                android:id="@+id/tv_house_detail_desc"
+                style="@style/layout_wrap_content"
+                android:lineSpacingExtra="@dimen/medium_padding"
+                android:paddingLeft="@dimen/standard_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:textColor="@color/black"
+                android:textSize="@dimen/medium_large_text"
+                android:textStyle="bold" />
+
+            <View style="@style/style_horizontal_line" />
+
+            <LinearLayout
+                android:id="@+id/rl_house_detail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standard_padding" >
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_house_detail_price"
+                        android:textSize="@dimen/medium_text" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_house_detail_price" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/standard_padding" >
+
+                    <ImageView
+                        android:id="@+id/iv_house_detail_address_icon"
+                        android:layout_width="10dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/icon_map" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/iv_house_detail_address_icon"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/medium_text" />
+                </RelativeLayout>
+
+                <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
+
+                <LinearLayout
+                    android:id="@+id/ll_house_detail_room_feature"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
+                <!-- <标签加入> -->
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/standard_padding"
+                    android:paddingRight="@dimen/standard_padding" >
+
+                    <ImageView
+                        android:id="@+id/iv_house_detail_public_facilities_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/icon_star" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_public_facilities"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/iv_house_detail_public_facilities_icon"
+                        android:text="@string/str_public_facilities" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_public_facilities_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_house_detail_public_facilities_icon"
+                        android:paddingBottom="@dimen/standard_padding"
+                        android:paddingTop="@dimen/small_padding" />
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/style_house_detail_red_title"
+                    android:text="@string/str_house_detail_house_general" />
+
+                <LinearLayout
+                    android:id="@+id/ll_house_detail_general"
+                    style="@style/style_ll_house_detail" >
+
+                    <TextView
+                        style="@style/style_house_detail_title"
+                        android:text="@string/str_house_detail_house_general" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_area"
+                        style="@style/style_house_detail_content"
+                        android:text="230.73㎡-6室-2/2层" />
+
+                    <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
+
+                    <TextView
+                        style="@style/style_house_detail_title"
+                        android:text="咨询电话" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_tel"
+                        style="@style/style_house_detail_content"
+                        android:text="400-636-9090"
+                        android:textColor="@color/color_tel_text" />
+
+                    <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
+
+                    <TextView
+                        style="@style/style_house_detail_title"
+                        android:text="@string/str_address" />
+
+                    <TextView
+                        android:id="@+id/tv_house_detail_house_address"
+                        style="@style/style_house_detail_content"
+                        android:paddingBottom="@dimen/standard_padding" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/style_house_detail_red_title"
+                    android:text="@string/str_house_detail_house_basic_info" />
+                <!-- 加入房间基本情况 -->
+
+                <LinearLayout
+                    android:id="@+id/ll_house_detail_house_basic_info"
+                    style="@style/style_ll_house_detail"
+                    android:orientation="vertical"
+                    android:padding="@dimen/standard_padding" >
+                </LinearLayout>
+
+                <TextView
+                    style="@style/style_house_detail_red_title"
+                    android:text="@string/str_map" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standard_padding" >
+
+                    <com.xiaoyu.rentingdemo.widget.ScaleImageView
+                        android:id="@+id/siv_house_detail_map_image"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+
+                    <!--
+                         <com.baidu.mapapi.map.MapView
+                        android:id="@+id/house_detail_bmapView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:clickable="true" />
+                    -->
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_house_detail_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_color_order"
+        android:gravity="center_horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_house_detail_tel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_tel" />
+
+        <TextView
+            style="@style/layout_wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_house_detail_tel"
+            android:text="@string/str_order_table"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>

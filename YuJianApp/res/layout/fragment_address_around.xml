@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include_house_list"
+        layout="@layout/comm_search_top" />
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mapview_address_around"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/include_house_list"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:id="@+id/ll_around_address_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rl_address_around_metro"
+                style="@style/style_relativelayout_address_around_bottom" >
+
+                <ImageView
+                    android:id="@+id/iv_metro"
+                    style="@style/style_imageview_address_around_bottom"
+                    android:background="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_address_around_metro"
+                    style="@style/style_textview_address_around_bottom"
+                    android:layout_toRightOf="@id/iv_metro"
+                    android:text="地铁" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_address_around_bus"
+                style="@style/style_relativelayout_address_around_bottom"
+                android:layout_marginLeft="@dimen/xsmall_margin"
+                android:layout_marginRight="@dimen/xsmall_margin" >
+
+                <ImageView
+                    android:id="@+id/iv_bus"
+                    style="@style/style_imageview_address_around_bottom"
+                    android:background="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_address_around_bus"
+                    style="@style/style_textview_address_around_bottom"
+                    android:layout_toRightOf="@id/iv_bus"
+                    android:text="公交" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_address_around_restaurant"
+                style="@style/style_relativelayout_address_around_bottom" >
+
+                <ImageView
+                    android:id="@+id/iv_restaurant"
+                    style="@style/style_imageview_address_around_bottom"
+                    android:background="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_address_around_restaurant"
+                    style="@style/style_textview_address_around_bottom"
+                    android:layout_toRightOf="@id/iv_restaurant"
+                    android:text="餐饮" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rl_address_around_hospital"
+                style="@style/style_relativelayout_address_around_bottom" >
+
+                <ImageView
+                    android:id="@+id/iv_hospital"
+                    style="@style/style_imageview_address_around_bottom"
+                    android:background="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_address_around_hospital"
+                    style="@style/style_textview_address_around_bottom"
+                    android:layout_toRightOf="@id/iv_hospital"
+                    android:text="医院" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_address_around_market"
+                style="@style/style_relativelayout_address_around_bottom"
+                android:layout_marginLeft="@dimen/xsmall_margin"
+                android:layout_marginRight="@dimen/xsmall_margin" >
+
+                <ImageView
+                    android:id="@+id/iv_market"
+                    style="@style/style_imageview_address_around_bottom"
+                    android:background="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_address_around_market"
+                    style="@style/style_textview_address_around_bottom"
+                    android:layout_toRightOf="@id/iv_market"
+                    android:text="商场" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_address_around_entertainment"
+                style="@style/style_relativelayout_address_around_bottom" >
+
+                <ImageView
+                    android:id="@+id/iv_entertainment"
+                    style="@style/style_imageview_address_around_bottom"
+                    android:background="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_address_around_entertainment"
+                    style="@style/style_textview_address_around_bottom"
+                    android:layout_toRightOf="@id/iv_entertainment"
+                    android:text="娱乐" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

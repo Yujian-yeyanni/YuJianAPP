@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.network.NoticHandler;
 import com.xiaoyu.rentingdemo.util.DataSource;
 import com.xiaoyu.rentingdemo.util.MLog;
@@ -18,11 +19,12 @@ public class GetConfigAction extends BaseAction {
 		super(handler, context);
 		this.context = context;
 	}
-	
-	public void getConfig(){
-		sendHttpRequest(null, HTTPRequest.GET, GET_CONFIG, true, "哈哈");
+
+	public void getConfig() {
+		sendHttpRequest(null, HTTPRequest.GET, GET_CONFIG, true,
+				R.string.str_loading_message);
 	}
-	
+
 	@Override
 	public void parseJSON(String json) {
 		JSONObject jsonObject = null;

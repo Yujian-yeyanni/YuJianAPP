@@ -9,6 +9,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.data.bean.*;
 import com.xiaoyu.rentingdemo.network.NoticHandler;
 import com.xiaoyu.rentingdemo.util.DataSource;
@@ -22,7 +23,7 @@ import com.xiaoyu.rentingdemo.util.Constants.HTTPRequest;
  * 
  */
 public class GetAllRoomListAction extends BaseAction {
-	
+
 	private static final String TAG = GetAllRoomListAction.class.getName();
 
 	private Context context;
@@ -31,23 +32,25 @@ public class GetAllRoomListAction extends BaseAction {
 		super(handler, context);
 		this.context = context;
 	}
-	
-	public void getAllRoomList(String cityPinyin){
-		sendHttpRequest(null, HTTPRequest.GET, cityPinyin+"/list.json", false, "哈哈");
+
+	public void getAllRoomList(String cityPinyin) {
+		sendHttpRequest(null, HTTPRequest.GET, cityPinyin + "/list.json", true,
+				R.string.str_loading_message);
 	}
-	
+
 	@Override
 	public void parseJSON(String json) {
 		JSONObject jsonObject = null;
 		String jsonResult = null;
 		try {
 			jsonObject = new JSONObject(json);
-			
+
 			if (jsonObject != null) {
 				jsonResult = jsonObject.toString();
 				Type type = new TypeToken<AllRoomListBean>() {
-					}.getType();
-				AllRoomListBean allRoomListBean = new Gson().fromJson(jsonResult, type);
+				}.getType();
+				AllRoomListBean allRoomListBean = new Gson().fromJson(
+						jsonResult, type);
 				DataSource.setAllRoomListBean(allRoomListBean);
 			}
 			MLog.e(TAG, jsonResult);

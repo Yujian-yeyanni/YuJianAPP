@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/standard_padding" >
+
+    <ImageView
+        android:id="@+id/iv_house_quailty_label"
+        android:layout_width="@dimen/house_quailty_label_width"
+        android:layout_height="@dimen/house_quality_label_height" />
+
+    <TextView
+        android:id="@+id/tv_house_quality_label"
+        style="@style/layout_wrap_content"
+        android:paddingLeft="@dimen/xsmall_padding" />
+
+</LinearLayout>

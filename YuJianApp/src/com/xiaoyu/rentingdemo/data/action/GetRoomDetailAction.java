@@ -9,6 +9,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.data.bean.AllRoomListBean;
 import com.xiaoyu.rentingdemo.data.bean.RoomBean;
 import com.xiaoyu.rentingdemo.data.bean.RoomDetailBean;
@@ -29,7 +30,7 @@ public class GetRoomDetailAction extends BaseAction {
 
 	public void getRoomDetail(String cityPinyin, int roomId) {
 		sendHttpRequest(null, HTTPRequest.GET, cityPinyin + "/" + roomId
-				+ ".json", false, "哈哈");
+				+ ".json", true, R.string.str_loading_message);
 	}
 
 	@Override

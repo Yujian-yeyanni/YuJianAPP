@@ -1,5 +1,7 @@
 package com.xiaoyu.rentingdemo.widget;
 
+import com.xiaoyu.rentingdemo.widget.pullrefresh.XListView;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -9,7 +11,7 @@ import android.widget.ListView;
  * @author shwan
  *
  */
-public class MyListView extends ListView {
+public class MyListView extends XListView {
 	// 滑动距离及坐标
 	private float xDistance, yDistance, xLast, yLast;
 

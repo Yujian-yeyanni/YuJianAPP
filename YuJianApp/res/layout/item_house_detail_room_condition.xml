@@ -8,7 +8,7 @@
         android:id="@+id/rl_house_detail_house_room_condition"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:background="@color/gray"
+        android:background="@drawable/bg_room_list_gray"
         android:paddingBottom="@dimen/small_padding"
         android:paddingTop="@dimen/small_padding" >
 

@@ -86,7 +86,8 @@
                     android:id="@+id/ll_house_detail_room_feature"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical" 
+                    >
                 </LinearLayout>
 
                 <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />

@@ -11,13 +11,14 @@ import android.os.Environment;
  * 
  */
 public class Constants {
+	// method of http request
 	public enum HTTPRequest {
 		POST, GET
 	}
 
 	public static final int COMM_PAGE_SIZE = 10;
 	public static final boolean DEBUG_ENABLE = true;
-
+	//
 	public static final int HOUSE_ROOM = 1001;
 	public static final int HOUSE_LIVING_ROOM = 1002;
 	public static final int HOUSE_TOILET = 1003;
@@ -25,6 +26,7 @@ public class Constants {
 	// set the picture size
 	public static final String photosSize = "?imageView2/0/w/480/h/320";
 
+	//CACHE PATH
 	public static final String DiskCachePath = new File(
 			Environment.getExternalStorageDirectory(), "/AfinalCachePath")
 			.toString();
@@ -37,9 +39,12 @@ public class Constants {
 	public static final String KEY_POI_ADDRESS = "poi_address";
 	public static final String KEY_POI_CITY = "poi_city";
 	public static final String KEY_POI_VILLAGE_NAME = "poi_village_name";
-	
+
 	public static final int MAX_SCREEN_WIDTH = 1080;
-	
+
 	public static final int CHANGED_SCREEN_WIDTH = 1000;
+	
+	// IMAGEVIEW IN VIEWPAGE BE CLICKED
+	public static final int HANDLER_MESSAGE_VIEWPAGE_CLICK = 0001;
 
 }

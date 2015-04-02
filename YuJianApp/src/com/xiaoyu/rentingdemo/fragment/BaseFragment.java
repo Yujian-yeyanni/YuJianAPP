@@ -73,6 +73,7 @@ public class BaseFragment extends Fragment implements OnClickListener,
 	 * @param rootView
 	 */
 	public void initCommTop(View rootView) {
+		// find comm top widget id
 		viewGroup = (ViewGroup) rootView.findViewById(R.id.include_house_list);
 		relativeLayoutTopSearch = (RelativeLayout) viewGroup
 				.findViewById(R.id.rl_comm_top_search);
@@ -90,6 +91,9 @@ public class BaseFragment extends Fragment implements OnClickListener,
 		textViewSeniorSearch.setVisibility(View.VISIBLE);
 	}
 
+	/**
+	 * set listener for widget
+	 */
 	public void setLinstener() {
 		layouLeftBack.setOnClickListener(this);
 		imageViewPersonal.setOnClickListener(this);
@@ -145,7 +149,7 @@ public class BaseFragment extends Fragment implements OnClickListener,
 			skipToFragment(new PersonalFragment(), R.id.fl_content, true);
 			break;
 		case R.id.tv_comm_top_senior_search:
-			//TODO SKIP TO SENIOR SEARCH PAGE
+			// TODO SKIP TO SENIOR SEARCH PAGE
 			break;
 		default:
 			break;
@@ -163,9 +167,10 @@ public class BaseFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onTextChanged(CharSequence s, int arg1, int arg2, int arg3) {
-		if (s.length()>0) {
+		// add change while text update in edittext
+		if (s.length() > 0) {
 			textViewSeniorSearch.setVisibility(View.GONE);
-		}else {
+		} else {
 			textViewSeniorSearch.setVisibility(View.VISIBLE);
 		}
 	}

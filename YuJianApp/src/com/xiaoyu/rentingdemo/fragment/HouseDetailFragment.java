@@ -185,8 +185,9 @@ public class HouseDetailFragment extends BaseFragment implements
 			TextView textViewRoomPrice = (TextView) view
 					.findViewById(R.id.tv_room_price);
 			RoomBean roomBean = houseRoomList.get(i);
+			// update home background 
 			if (roomBean.getId() == this.roomBean.getId()) {
-				relativeLayout.setBackgroundResource(R.color.red);
+				relativeLayout.setBackgroundResource(R.drawable.bg_room_list_red);
 			}
 			String strConditionFormat = getActivity().getText(
 					R.string.str_format_house_condition).toString();
@@ -280,6 +281,7 @@ public class HouseDetailFragment extends BaseFragment implements
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.siv_house_detail_map_image:
+			//SKIP TO ADDRESS AROUND FRAGMNET
 			AddressAroundFragment aroundFragment = new AddressAroundFragment();
 			Bundle bundle = new Bundle();
 			bundle.putString(Constants.KEY_POI_CITY, roomBean.getH_city());

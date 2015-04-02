@@ -299,7 +299,6 @@ public class AddressAroundFragment extends BaseFragment implements
 			return;
 		}
 		if (result.error == SearchResult.ERRORNO.NO_ERROR) {
-			// TODO JUDGE MBAIDUMAP IS NULL, SHOW NULLPOINTEXCEPTION
 			mBaiduMap.clear();
 			mBaiduMap.addOverlay(new MarkerOptions().position(
 					geoCodeResult.getLocation()).icon(
@@ -310,6 +309,7 @@ public class AddressAroundFragment extends BaseFragment implements
 				return;
 			}
 			poiResult = result;
+			//TODO UPDATE MAPICON 
 			for (int i = 0; i < result.getAllPoi().size(); i++) {
 				PoiInfo poiInfo = result.getAllPoi().get(i);
 				// overlay.removeFromMap();

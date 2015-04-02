@@ -14,6 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * house detail quality label view
+ * 
+ * @author shwan
+ * 
+ */
 public class QualityLabelView extends View {
 
 	private static final String TAG = QualityLabelView.class.getName();
@@ -60,7 +66,7 @@ public class QualityLabelView extends View {
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT);
-//		params.setMargins(20, 0, 40, 0);
+		// params.setMargins(20, 0, 40, 0);
 		List<View> qualityLabelViews = new ArrayList<View>();
 		int totalView = 0;
 		for (int i = 0; i <= size; i++) {
@@ -79,7 +85,7 @@ public class QualityLabelView extends View {
 			textLabel.setText(labelStrId[i]);
 			qualityLabelViews.add(view);
 			totalView++;
-//			itemParams.setMargins(20, 20, 0, 0);
+			// itemParams.setMargins(20, 20, 0, 0);
 			if (totalView >= 4) {
 				LinearLayout horizLL = new LinearLayout(
 						context.getApplicationContext());

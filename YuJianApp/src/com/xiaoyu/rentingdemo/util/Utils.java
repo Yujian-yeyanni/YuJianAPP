@@ -1,9 +1,12 @@
 package com.xiaoyu.rentingdemo.util;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.TextView;
 
 /**
@@ -108,5 +111,35 @@ public class Utils {
 	public static int Px2Dp(Context context, float px) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (px / scale + 0.5f);
+	}
+
+	/**
+	 * GET UPPERCASE FORM STRING
+	 * 
+	 * @param strRoomNumber
+	 * @return
+	 */
+	public static String getUpperCase(String strRoomNumber) {
+
+		return "";
+	}
+
+	/**
+	 * Read the local resources in the form of the save memory
+	 * 
+	 * @param context
+	 * 
+	 * @param resId
+	 * 
+	 * @return
+	 */
+	public static Bitmap readBitMap(Context context, int resId) {
+		BitmapFactory.Options opt = new BitmapFactory.Options();
+		opt.inPreferredConfig = Bitmap.Config.RGB_565;
+		opt.inPurgeable = true;
+		opt.inInputShareable = true;
+		// 获取资源图片
+		InputStream is = context.getResources().openRawResource(resId);
+		return BitmapFactory.decodeStream(is, null, opt);
 	}
 }

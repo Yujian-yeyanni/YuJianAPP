@@ -12,9 +12,17 @@
     <RelativeLayout
         android:id="@+id/rl_house_desc"
         android:layout_width="fill_parent"
-        android:layout_height="58dp"
+        android:layout_height="265dp"
         android:layout_below="@id/include_item_house_viewpager"
         android:background="@color/color_apartment_bg" >
+
+        <LinearLayout
+            android:id="@+id/ll_house_list_customer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical" >
+        </LinearLayout>
 
         <View style="@style/style_vertical_line" />
 
@@ -29,6 +37,8 @@
         <TextView
             android:id="@+id/tv_item_apartment_house_address"
             style="@style/style_text_house_desc"
+            android:layout_below="@id/ll_house_list_customer"
+            android:layout_marginTop="@dimen/standard_margin"
             android:textColor="@color/black" />
 
         <TextView
@@ -39,13 +49,13 @@
         <TextView
             android:id="@+id/tv_item_apartment_house_price"
             style="@style/style_text_house_price"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/xsmall_margin"
-            android:layout_toLeftOf="@+id/tv_item_apartment_price_icon"
-            android:textColor="@color/red"
-            android:textSize="@dimen/xLarge_text"
-            android:textStyle="bold" />
+            android:paddingRight="@dimen/small_padding"
+            android:textColor="@color/black" />
 
-        <TextView
+        <!--
+             <TextView
             android:id="@+id/tv_item_apartment_price_icon"
             style="@style/style_text_house_price"
             android:layout_alignParentRight="true"
@@ -53,6 +63,7 @@
             android:gravity="bottom"
             android:text="@string/str_house_price_suffix"
             android:textColor="@color/black" />
+        -->
     </RelativeLayout>
 
 </RelativeLayout>

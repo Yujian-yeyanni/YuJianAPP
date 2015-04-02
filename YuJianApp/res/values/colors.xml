@@ -24,5 +24,8 @@
     <color name="color_content_text">#898989</color>
     <color name="color_tel_text">#496F9E</color>
     <color name="color_house_detail_price">#D5755D</color>
+    <!-- 背景框颜色 -->
+    <color name="bg_color_room_list_gray">#CFCFCF</color>
+    <color name="bg_color_room_list_red">#90513F</color>
 
 </resources>

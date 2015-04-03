@@ -7,7 +7,7 @@
         android:id="@+id/include_house_list"
         layout="@layout/comm_search_top" />
 
-    <ScrollView
+    <com.xiaoyu.rentingdemo.widget.MyScrollView
         style="@style/layout_fill_parent"
         android:layout_below="@id/include_house_list"
         android:layout_marginBottom="50dp"
@@ -86,8 +86,7 @@
                     android:id="@+id/ll_house_detail_room_feature"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" 
-                    >
+                    android:orientation="vertical" >
                 </LinearLayout>
 
                 <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
@@ -187,18 +186,10 @@
                         android:id="@+id/siv_house_detail_map_image"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content" />
-
-                    <!--
-                         <com.baidu.mapapi.map.MapView
-                        android:id="@+id/house_detail_bmapView"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:clickable="true" />
-                    -->
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </com.xiaoyu.rentingdemo.widget.MyScrollView>
 
     <RelativeLayout
         android:id="@+id/rl_house_detail_bottom"

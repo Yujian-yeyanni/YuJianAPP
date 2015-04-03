@@ -77,7 +77,7 @@ public class HouseListFragment extends BaseFragment implements
 	public void findViewById(View rootView) {
 		listViewPictures = (MyListView) rootView
 				.findViewById(R.id.lv_apartment_pictures);
-		//imageview in the viewpager be clicked
+		// imageview in the viewpager be clicked
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
@@ -97,7 +97,7 @@ public class HouseListFragment extends BaseFragment implements
 	}
 
 	private void refreshHouseList(List<RoomBean> roomBeans) {
-		//refresh house list show
+		// refresh house list show
 		apartmentListAdapter.setRoomBeanList(roomBeans);
 		listViewPictures.setAdapter(apartmentListAdapter);
 		apartmentListAdapter.notifyDataSetChanged();
@@ -173,7 +173,14 @@ public class HouseListFragment extends BaseFragment implements
 
 	@Override
 	public void onLoadMore() {
+		//TODO SET LOADA MORE DATA
+	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		//clear edittext focus,Block pop keyboard
+		editTextSearch.clearFocus();
 	}
 
 }

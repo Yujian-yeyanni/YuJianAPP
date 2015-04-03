@@ -96,6 +96,7 @@ public class AddressAroundFragment extends BaseFragment implements
 	private String searchStr = "";
 	private GeoCodeResult geoCodeResult;
 	private PoiResult poiResult;
+	private int nowIcon;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -188,21 +189,27 @@ public class AddressAroundFragment extends BaseFragment implements
 		// TODO ADD LISTENER
 		case R.id.rl_address_around_bus:
 			searchStr = getText(R.string.str_bus).toString();
+			nowIcon = 1;
 			break;
 		case R.id.rl_address_around_entertainment:
 			searchStr = getText(R.string.str_entertainment).toString();
+			nowIcon = 5;
 			break;
 		case R.id.rl_address_around_hospital:
 			searchStr = getText(R.string.str_hospital).toString();
+			nowIcon = 3;
 			break;
 		case R.id.rl_address_around_market:
 			searchStr = getText(R.string.str_market).toString();
+			nowIcon = 4;
 			break;
 		case R.id.rl_address_around_metro:
 			searchStr = getText(R.string.str_metro).toString();
+			nowIcon = 0;
 			break;
 		case R.id.rl_address_around_restaurant:
 			searchStr = getText(R.string.str_restaurant).toString();
+			nowIcon = 2;
 			break;
 		default:
 			break;
@@ -309,14 +316,15 @@ public class AddressAroundFragment extends BaseFragment implements
 				return;
 			}
 			poiResult = result;
-			//TODO UPDATE MAPICON 
+			// TODO UPDATE MAPICON
 			for (int i = 0; i < result.getAllPoi().size(); i++) {
 				PoiInfo poiInfo = result.getAllPoi().get(i);
 				// overlay.removeFromMap();
 				mBaiduMap.addOverlay(new MarkerOptions().position(
-						poiInfo.location).icon(
-						BitmapDescriptorFactory.fromBitmap(Utils.readBitMap(
-								getActivity(), R.drawable.ic_launcher))));
+						poiInfo.location)
+						.icon(BitmapDescriptorFactory.fromBitmap(Utils
+								.readBitMap(getActivity(),
+										Constants.MAP_ICON_ID[nowIcon]))));
 				// overlay.addToMap();
 			}
 			mBaiduMap.setOnMarkerClickListener(this);

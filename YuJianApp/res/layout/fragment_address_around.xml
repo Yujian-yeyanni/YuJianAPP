@@ -37,7 +37,7 @@
                 <ImageView
                     android:id="@+id/iv_metro"
                     style="@style/style_imageview_address_around_bottom"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/ic_metro" />
 
                 <TextView
                     android:id="@+id/tv_address_around_metro"
@@ -55,7 +55,7 @@
                 <ImageView
                     android:id="@+id/iv_bus"
                     style="@style/style_imageview_address_around_bottom"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/ic_bus" />
 
                 <TextView
                     android:id="@+id/tv_address_around_bus"
@@ -71,7 +71,7 @@
                 <ImageView
                     android:id="@+id/iv_restaurant"
                     style="@style/style_imageview_address_around_bottom"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/ic_restaurant" />
 
                 <TextView
                     android:id="@+id/tv_address_around_restaurant"
@@ -95,7 +95,7 @@
                 <ImageView
                     android:id="@+id/iv_hospital"
                     style="@style/style_imageview_address_around_bottom"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/ic_hospital" />
 
                 <TextView
                     android:id="@+id/tv_address_around_hospital"
@@ -113,7 +113,7 @@
                 <ImageView
                     android:id="@+id/iv_market"
                     style="@style/style_imageview_address_around_bottom"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/ic_market" />
 
                 <TextView
                     android:id="@+id/tv_address_around_market"
@@ -129,7 +129,7 @@
                 <ImageView
                     android:id="@+id/iv_entertainment"
                     style="@style/style_imageview_address_around_bottom"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/ic_entertainment" />
 
                 <TextView
                     android:id="@+id/tv_address_around_entertainment"

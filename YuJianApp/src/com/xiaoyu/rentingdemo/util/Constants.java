@@ -2,6 +2,8 @@ package com.xiaoyu.rentingdemo.util;
 
 import java.io.File;
 
+import com.xiaoyu.rentingdemo.R;
+
 import android.os.Environment;
 
 /**
@@ -26,7 +28,7 @@ public class Constants {
 	// set the picture size
 	public static final String photosSize = "?imageView2/0/w/480/h/320";
 
-	//CACHE PATH
+	// CACHE PATH
 	public static final String DiskCachePath = new File(
 			Environment.getExternalStorageDirectory(), "/AfinalCachePath")
 			.toString();
@@ -43,8 +45,13 @@ public class Constants {
 	public static final int MAX_SCREEN_WIDTH = 1080;
 
 	public static final int CHANGED_SCREEN_WIDTH = 1000;
-	
+
 	// IMAGEVIEW IN VIEWPAGE BE CLICKED
 	public static final int HANDLER_MESSAGE_VIEWPAGE_CLICK = 0001;
+
+	public static final int[] MAP_ICON_ID = { R.drawable.ic_metro,
+			R.drawable.ic_bus, R.drawable.ic_restaurant,
+			R.drawable.ic_hospital, R.drawable.ic_market,
+			R.drawable.ic_entertainment };
 
 }

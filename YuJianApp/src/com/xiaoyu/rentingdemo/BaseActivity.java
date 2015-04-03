@@ -16,7 +16,6 @@ public class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		fragmentManager = getSupportFragmentManager();
 	}
 
@@ -77,7 +76,7 @@ public class BaseActivity extends FragmentActivity {
 		String waitMsg = "";
 		waitMsg = this.getText(R.string.str_loading_message).toString();
 		if (waitMsg == null || waitMsg.equals("")) {
-			 waitMsg = getText(R.string.str_loading_message).toString();
+			waitMsg = getText(R.string.str_loading_message).toString();
 		}
 
 		progressDialog = new ProgressDialog(this);
@@ -98,5 +97,14 @@ public class BaseActivity extends FragmentActivity {
 		} catch (Throwable t) {
 
 		}
+	}
+
+	/**
+	 * 返回键监听
+	 */
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		// TODO add back listener
 	}
 }

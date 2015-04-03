@@ -3,17 +3,16 @@ package com.xiaoyu.rentingdemo.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.UiSettings;
-import com.baidu.mapapi.model.LatLng;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.adapter.ViewPagerAdapter;
 import com.xiaoyu.rentingdemo.data.bean.RoomBean;
@@ -24,17 +23,6 @@ import com.xiaoyu.rentingdemo.util.MLog;
 import com.xiaoyu.rentingdemo.util.Utils;
 import com.xiaoyu.rentingdemo.widget.QualityLabelView;
 import com.xiaoyu.rentingdemo.widget.ScaleImageView;
-
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class HouseDetailFragment extends BaseFragment implements
 		OnClickListener {
@@ -305,6 +293,7 @@ public class HouseDetailFragment extends BaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
+//		setCurrentFragment(new HouseDetailFragment());
 	}
 
 	@Override

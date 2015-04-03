@@ -1,20 +1,24 @@
 package com.xiaoyu.rentingdemo.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.baidu.mapapi.cloud.NearbySearchInfo;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
-import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.Overlay;
-import com.baidu.mapapi.map.offline.MKOLSearchRecord;
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.model.LatLngBounds;
-import com.baidu.mapapi.overlayutil.PoiOverlay;
 import com.baidu.mapapi.search.core.CityInfo;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
@@ -24,8 +28,6 @@ import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
-import com.baidu.mapapi.search.poi.PoiBoundSearchOption;
-import com.baidu.mapapi.search.poi.PoiCitySearchOption;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiDetailSearchOption;
 import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
@@ -36,17 +38,6 @@ import com.xiaoyu.rentingdemo.util.Constants;
 import com.xiaoyu.rentingdemo.util.StringUtil;
 import com.xiaoyu.rentingdemo.util.ToastUtils;
 import com.xiaoyu.rentingdemo.util.Utils;
-
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Im;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * 查看周边设施
@@ -71,21 +62,6 @@ public class AddressAroundFragment extends BaseFragment implements
 	private PoiSearch poiSearch;
 	private NearbySearchInfo nearbySearchInfo;
 
-	private TextView textViewMetro;
-	private TextView textViewBus;
-	private TextView textViewResturant;
-	private TextView textViewHospital;
-	private TextView textViewMarket;
-	private TextView textViewEntertainment;
-
-	// equipment image
-	private ImageView imageViewMetro;
-	private ImageView imageViewBus;
-	private ImageView imageViewRestaurant;
-	private ImageView imageViewHospital;
-	private ImageView ImageViewMarket;
-	private ImageView imageViewEntertainment;
-
 	private RelativeLayout relativeLayoutMetro;
 	private RelativeLayout relativeLayoutBus;
 	private RelativeLayout relativeLayoutRestaurant;
@@ -96,7 +72,7 @@ public class AddressAroundFragment extends BaseFragment implements
 	private String searchStr = "";
 	private GeoCodeResult geoCodeResult;
 	private PoiResult poiResult;
-	private int nowIcon;
+	private int nowIcon;	// bottom layout click item
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -126,23 +102,11 @@ public class AddressAroundFragment extends BaseFragment implements
 	@Override
 	public void findViewById(View rootView) {
 		super.findViewById(rootView);
+		// init map view
 		mapView = (MapView) rootView.findViewById(R.id.mapview_address_around);
 		mBaiduMap = mapView.getMap();
 		MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(17.0f);
 		mBaiduMap.setMapStatus(msu);
-
-		textViewBus = (TextView) rootView
-				.findViewById(R.id.tv_address_around_bus);
-		textViewEntertainment = (TextView) rootView
-				.findViewById(R.id.tv_address_around_entertainment);
-		textViewHospital = (TextView) rootView
-				.findViewById(R.id.tv_address_around_hospital);
-		textViewMarket = (TextView) rootView
-				.findViewById(R.id.tv_address_around_market);
-		textViewMetro = (TextView) rootView
-				.findViewById(R.id.tv_address_around_metro);
-		textViewResturant = (TextView) rootView
-				.findViewById(R.id.tv_address_around_restaurant);
 
 		relativeLayoutBus = (RelativeLayout) rootView
 				.findViewById(R.id.rl_address_around_bus);
@@ -158,7 +122,6 @@ public class AddressAroundFragment extends BaseFragment implements
 				.findViewById(R.id.rl_address_around_restaurant);
 
 		setLinstener();
-		// TODO ADD BOTTOM DATA
 	}
 
 	@Override
@@ -186,14 +149,18 @@ public class AddressAroundFragment extends BaseFragment implements
 	public void onClick(View v) {
 		super.onClick(v);
 		switch (v.getId()) {
-		// TODO ADD LISTENER
+
+		case R.id.rl_address_around_metro:
+			searchStr = getText(R.string.str_metro).toString();
+			nowIcon = 0;
+			break;
 		case R.id.rl_address_around_bus:
 			searchStr = getText(R.string.str_bus).toString();
 			nowIcon = 1;
 			break;
-		case R.id.rl_address_around_entertainment:
-			searchStr = getText(R.string.str_entertainment).toString();
-			nowIcon = 5;
+		case R.id.rl_address_around_restaurant:
+			searchStr = getText(R.string.str_restaurant).toString();
+			nowIcon = 2;
 			break;
 		case R.id.rl_address_around_hospital:
 			searchStr = getText(R.string.str_hospital).toString();
@@ -203,13 +170,9 @@ public class AddressAroundFragment extends BaseFragment implements
 			searchStr = getText(R.string.str_market).toString();
 			nowIcon = 4;
 			break;
-		case R.id.rl_address_around_metro:
-			searchStr = getText(R.string.str_metro).toString();
-			nowIcon = 0;
-			break;
-		case R.id.rl_address_around_restaurant:
-			searchStr = getText(R.string.str_restaurant).toString();
-			nowIcon = 2;
+		case R.id.rl_address_around_entertainment:
+			searchStr = getText(R.string.str_entertainment).toString();
+			nowIcon = 5;
 			break;
 		default:
 			break;

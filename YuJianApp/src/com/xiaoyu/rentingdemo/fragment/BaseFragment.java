@@ -1,9 +1,5 @@
 package com.xiaoyu.rentingdemo.fragment;
 
-import com.xiaoyu.rentingdemo.BaseActivity;
-import com.xiaoyu.rentingdemo.R;
-import com.xiaoyu.rentingdemo.util.MLog;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.xiaoyu.rentingdemo.BaseActivity;
+import com.xiaoyu.rentingdemo.R;
 
 public class BaseFragment extends Fragment implements OnClickListener,
 		TextWatcher {
@@ -174,5 +173,4 @@ public class BaseFragment extends Fragment implements OnClickListener,
 			textViewSeniorSearch.setVisibility(View.VISIBLE);
 		}
 	}
-
 }

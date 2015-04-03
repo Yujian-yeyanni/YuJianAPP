@@ -3,25 +3,9 @@ package com.xiaoyu.rentingdemo.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xiaoyu.rentingdemo.R;
-import com.xiaoyu.rentingdemo.adapter.ApartmentListAdapter;
-import com.xiaoyu.rentingdemo.data.action.GetAllRoomListAction;
-import com.xiaoyu.rentingdemo.data.action.GetRoomDetailAction;
-import com.xiaoyu.rentingdemo.data.bean.AllRoomListBean;
-import com.xiaoyu.rentingdemo.data.bean.RoomBean;
-import com.xiaoyu.rentingdemo.network.HttpHandler;
-import com.xiaoyu.rentingdemo.network.NoticHandler;
-import com.xiaoyu.rentingdemo.util.Constants;
-import com.xiaoyu.rentingdemo.util.DataSource;
-import com.xiaoyu.rentingdemo.util.StringUtil;
-import com.xiaoyu.rentingdemo.util.ToastUtils;
-import com.xiaoyu.rentingdemo.widget.MyListView;
-import com.xiaoyu.rentingdemo.widget.pullrefresh.XListView.IXListViewListener;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,10 +13,21 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
+
+import com.xiaoyu.rentingdemo.R;
+import com.xiaoyu.rentingdemo.adapter.ApartmentListAdapter;
+import com.xiaoyu.rentingdemo.data.action.GetAllRoomListAction;
+import com.xiaoyu.rentingdemo.data.action.GetRoomDetailAction;
+import com.xiaoyu.rentingdemo.data.bean.RoomBean;
+import com.xiaoyu.rentingdemo.network.HttpHandler;
+import com.xiaoyu.rentingdemo.network.NoticHandler;
+import com.xiaoyu.rentingdemo.util.Constants;
+import com.xiaoyu.rentingdemo.util.DataSource;
+import com.xiaoyu.rentingdemo.util.StringUtil;
+import com.xiaoyu.rentingdemo.widget.MyListView;
+import com.xiaoyu.rentingdemo.widget.pullrefresh.XListView.IXListViewListener;
 
 /**
  * 首页list
@@ -181,6 +176,6 @@ public class HouseListFragment extends BaseFragment implements
 		super.onResume();
 		//clear edittext focus,Block pop keyboard
 		editTextSearch.clearFocus();
+//		setCurrentFragment(new HouseListFragment());
 	}
-
 }

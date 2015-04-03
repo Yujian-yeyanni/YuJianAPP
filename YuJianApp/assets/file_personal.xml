@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+    <graphics name="personal_info">
+        <typeid>0</typeid>
+        <typestring>我的订单</typestring>
+        
+        <typeid>1</typeid>
+        <typestring>我的租金</typestring>
+        
+        <typeid>2</typeid>
+        <typestring>我的服务</typestring>
+        
+    </graphics>
+
+
+</project>
+

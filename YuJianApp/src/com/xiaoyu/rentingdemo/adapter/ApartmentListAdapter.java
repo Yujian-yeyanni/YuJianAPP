@@ -2,34 +2,25 @@ package com.xiaoyu.rentingdemo.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor.DiscardPolicy;
 
 import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.data.bean.RoomBean;
 import com.xiaoyu.rentingdemo.util.Constants;
 import com.xiaoyu.rentingdemo.util.DataSource;
 import com.xiaoyu.rentingdemo.util.FinalBitmapUtils;
-import com.xiaoyu.rentingdemo.util.ToastUtils;
 import com.xiaoyu.rentingdemo.util.Utils;
 import com.xiaoyu.rentingdemo.widget.ScaleImageView;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.Message;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ApartmentListAdapter extends BaseAdapter {
 	private List<RoomBean> roomBeans;
@@ -159,8 +150,6 @@ public class ApartmentListAdapter extends BaseAdapter {
 		holder.textViewHouseArea.setText(strAreaInfo);
 		holder.textViewHousePrice.setText(roomBean.getMinPrice() / 100 + "～"
 				+ roomBean.getGuidePrice() / 100 + "元/月");
-		// holder.textViewHousePrice.setText("￥" + roomBean.getMinPrice() /
-		// 100);
 	}
 
 	/**
@@ -187,8 +176,9 @@ public class ApartmentListAdapter extends BaseAdapter {
 			ScaleImageView image = new ScaleImageView(context);
 			image.setImageWidth(width);
 			image.setImageHeight((int) (height / 3.5));
-			FinalBitmapUtils.getInstance().setLoadPicture(
-					R.drawable.bg_default_image);
+			// CANCLE SET DEFAULT BACKGROUND
+//			FinalBitmapUtils.getInstance().setLoadPicture(
+//					R.drawable.bg_default_image);
 			FinalBitmapUtils.getInstance().displayImage(
 					DataSource.getImage_server() + photosDesc
 							+ Constants.photosSize, image);

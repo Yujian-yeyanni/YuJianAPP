@@ -54,4 +54,6 @@ public class Constants {
 			R.drawable.ic_hospital, R.drawable.ic_market,
 			R.drawable.ic_entertainment };
 
+	
+	public final static String TEL = "tel:400-636-9090";
 }

@@ -1,8 +1,14 @@
 package com.xiaoyu.rentingdemo.fragment;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -39,12 +45,14 @@ public class HouseDetailFragment extends BaseFragment implements
 	private TextView textViewRoomPrice;
 	private TextView textViewRoomType;
 	private TextView textViewRoomAddress;
-	private LinearLayout layoutRoomFeature;//add house label layout
+	private LinearLayout layoutRoomFeature;// add house label layout
 	private TextView textViewPublicFacilities;
 	private TextView textViewRoomArea;
 	private TextView textViewTel;
 	private TextView textViewAddress;
 	private LinearLayout layoutHouseCondition;
+
+	private RelativeLayout layoutOrderTel; // order layout
 
 	private List<String> roomPictureList;
 	private RoomBean roomBean;
@@ -110,6 +118,9 @@ public class HouseDetailFragment extends BaseFragment implements
 		scaleImageView = (ScaleImageView) rootView
 				.findViewById(R.id.siv_house_detail_map_image);
 
+		layoutOrderTel = (RelativeLayout) rootView
+				.findViewById(R.id.rl_house_detail_bottom);
+
 		setData();
 		initMapView();
 		setLinstener();
@@ -126,7 +137,7 @@ public class HouseDetailFragment extends BaseFragment implements
 		textViewRoomPrice.setText("￥" + roomBean.getMinPrice() / 100);
 		String strTypeFormat = getActivity().getText(
 				R.string.str_format_house_type).toString();
-		//TODO change room name show
+		// TODO change room name show
 		String strTypeInfo = String.format(strTypeFormat,
 				Utils.getUpperCase(roomBean.getRoomName()));
 		textViewRoomType.setText(strTypeInfo);
@@ -143,9 +154,9 @@ public class HouseDetailFragment extends BaseFragment implements
 		textViewRoomArea.setText(strHouseAreaInfo);
 		textViewAddress.setText(roomBean.getH_district()
 				+ roomBean.getH_street() + roomBean.getH_villageName());
-		
+
 		QualityLabelView labelView = new QualityLabelView(getActivity());
-		//TODO add label
+		// TODO add label
 		labelView.setLabelView(layoutRoomFeature, 5);
 		addHouseRoomList(layoutHouseCondition, houseRoomList);
 	}
@@ -174,15 +185,16 @@ public class HouseDetailFragment extends BaseFragment implements
 			TextView textViewRoomPrice = (TextView) view
 					.findViewById(R.id.tv_room_price);
 			RoomBean roomBean = houseRoomList.get(i);
-			// update home background 
+			// update home background
 			if (roomBean.getId() == this.roomBean.getId()) {
-				relativeLayout.setBackgroundResource(R.drawable.bg_room_list_red);
+				relativeLayout
+						.setBackgroundResource(R.drawable.bg_room_list_red);
 			}
 			String strConditionFormat = getActivity().getText(
 					R.string.str_format_house_condition).toString();
 			String strConditonInfo = String.format(strConditionFormat,
-					Utils.getUpperCase(roomBean.getRoomName()), roomBean.getTowards(),
-					roomBean.getRoomArea());
+					Utils.getUpperCase(roomBean.getRoomName()),
+					roomBean.getTowards(), roomBean.getRoomArea());
 			textViewRoomCondition.setText(strConditonInfo);
 			textViewRoomPrice.setText("￥" + roomBean.getMinPrice() / 100);
 			layoutHouseCondition.addView(view);
@@ -232,6 +244,7 @@ public class HouseDetailFragment extends BaseFragment implements
 	public void setLinstener() {
 		super.setLinstener();
 		scaleImageView.setOnClickListener(this);
+		layoutOrderTel.setOnClickListener(this);
 		initViewPager();
 	}
 
@@ -270,7 +283,7 @@ public class HouseDetailFragment extends BaseFragment implements
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.siv_house_detail_map_image:
-			//SKIP TO ADDRESS AROUND FRAGMNET
+			// SKIP TO ADDRESS AROUND FRAGMNET
 			AddressAroundFragment aroundFragment = new AddressAroundFragment();
 			Bundle bundle = new Bundle();
 			bundle.putString(Constants.KEY_POI_CITY, roomBean.getH_city());
@@ -279,10 +292,44 @@ public class HouseDetailFragment extends BaseFragment implements
 			aroundFragment.setArguments(bundle);
 			addToFragment(aroundFragment, R.id.fl_content, true);
 			break;
+		case R.id.rl_house_detail_bottom:
+			// prompt the call confirm dialog
+			showConfirmDialog(getText(R.string.str_confirm_call).toString());
+			break;
 		default:
 			break;
 		}
+	}
 
+	/**
+	 * confirm call dialog
+	 * 
+	 * @param promptMessage
+	 */
+	private void showConfirmDialog(String promptMessage) {
+		Dialog alertDialog = new AlertDialog.Builder(getActivity())
+				// .setTitle(promptMessage)
+				.setMessage(promptMessage)
+				.setIcon(R.drawable.icon_phone)
+				.setPositiveButton(R.string.str_confirm,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent intent = new Intent(Intent.ACTION_CALL,
+										Uri.parse(Constants.TEL));
+								startActivity(intent);
+							}
+						})
+				.setNegativeButton(R.string.str_cancel,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+							}
+						}).create();
+		alertDialog.setCanceledOnTouchOutside(false);
+		alertDialog.show();
 	}
 
 	@Override
@@ -293,12 +340,12 @@ public class HouseDetailFragment extends BaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
-//		setCurrentFragment(new HouseDetailFragment());
+		// setCurrentFragment(new HouseDetailFragment());
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
 	}
-	
+
 }

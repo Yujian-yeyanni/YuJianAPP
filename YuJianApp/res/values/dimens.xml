@@ -45,13 +45,21 @@
     <dimen name="picture_pull_to_refresh_last_update_time_text_size">10dp</dimen>
     <dimen name="picture_pull_to_refresh_last_update_time_top_margin">6dp</dimen>
     <dimen name="picture_pull_to_refresh_footer_height">40dp</dimen>
-    
+
     <!-- 客房详情label -->
     <dimen name="house_quailty_label_width">14dp</dimen>
     <dimen name="house_quality_label_height">14dp</dimen>
-    
+
     <!-- 个人中心 -->
     <dimen name="personal_photo_width">50dp</dimen>
     <dimen name="personal_photo_height">50dp</dimen>
+    <dimen name="personal_item_height">55dp</dimen>
+    <dimen name="personal_right_arrow_height">30dp</dimen>
+    <dimen name="personal_right_arrow_width">25dp</dimen>
+    
+    <!-- another pull to refresh listview dimen -->
+    <dimen name="list_item_default_height">48dp</dimen>
+    <dimen name="refresh_title_devide">5dp</dimen>
+    <dimen name="refresh_title_margin_left">40dp</dimen>
 
 </resources>

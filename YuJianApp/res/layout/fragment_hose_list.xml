@@ -12,8 +12,10 @@
         android:id="@+id/lv_apartment_pictures"
         style="@style/layout_fill_parent"
         android:layout_below="@id/include_house_list"
+        android:background="@color/white"
         android:divider="@color/trans"
-        android:background="@color/white" >
+        android:cacheColorHint="@color/trans"
+        android:fadingEdge="none" >
     </com.xiaoyu.rentingdemo.widget.MyListView>
 
     <TextView

@@ -39,8 +39,9 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/bg_search_frame"
+        android:background="@drawable/bg_round_edittext"
         android:focusable="true"
+        android:paddingLeft="@dimen/standard_padding"
         android:focusableInTouchMode="true" >
 
         <EditText
@@ -49,18 +50,31 @@
             android:layout_height="@dimen/comm_top_search_height"
             android:layout_centerVertical="true"
             android:background="@color/trans"
+            android:hint="@string/str_top_hint_msg"
             android:imeOptions="actionSearch"
             android:inputType="text"
+            android:maxLines="1"
             android:singleLine="true" />
+
+        <View
+            android:id="@+id/view_comm_top_line"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="@dimen/xsmall_margin"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_comm_top_senior_search"
+            android:background="@color/color_house_list_border"
+             />
 
         <TextView
             android:id="@+id/tv_comm_top_senior_search"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/comm_top_search_height"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:gravity="center_vertical"
-            android:paddingRight="@dimen/small_padding"
-            android:text="高级搜索"
+            android:paddingRight="@dimen/standard_padding"
+            android:text="@string/str_seniro_search"
             android:visibility="visible" />
     </RelativeLayout>
 

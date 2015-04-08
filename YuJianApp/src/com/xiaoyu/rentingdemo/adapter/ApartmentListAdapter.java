@@ -9,6 +9,7 @@ import com.xiaoyu.rentingdemo.util.Constants;
 import com.xiaoyu.rentingdemo.util.DataSource;
 import com.xiaoyu.rentingdemo.util.FinalBitmapUtils;
 import com.xiaoyu.rentingdemo.util.Utils;
+import com.xiaoyu.rentingdemo.widget.CircleImageView;
 import com.xiaoyu.rentingdemo.widget.ScaleImageView;
 
 import android.content.Context;
@@ -77,7 +78,7 @@ public class ApartmentListAdapter extends BaseAdapter {
 					.findViewById(R.id.tv_item_apartment_house_price);
 			holder.linearLayout = (LinearLayout) conventView
 					.findViewById(R.id.ll_house_list_customer);
-
+			// get viewpager layout
 			holder.viewGroup = (ViewGroup) conventView
 					.findViewById(R.id.include_item_house_viewpager);
 			holder.viewPager = (ViewPager) holder.viewGroup
@@ -93,7 +94,7 @@ public class ApartmentListAdapter extends BaseAdapter {
 			holder = (ViewHolder) conventView.getTag();
 		}
 		// set viewpager height
-		holder.viewPager.getLayoutParams().height = (int) (height / 3.72);
+		holder.viewPager.getLayoutParams().height = (int) (height / 2.5);
 		// default image url
 		// "http://7qn8hl.com1.z0.glb.clouddn.com/E0BC579C72B249A5AAF89BBBB4F84653.jpg"
 		if (roomBeans == null) {
@@ -104,12 +105,12 @@ public class ApartmentListAdapter extends BaseAdapter {
 		List<String> roomPictureList = roomBean.getRoomPictureArray();
 		setHouseListData(roomBean, holder);
 		setImageView(roomPictureList, holder);
-		addCustomersList(holder);
+		addCustomersList(holder); // add customer comment list
 		return conventView;
 	}
 
 	/**
-	 * 添加客户list
+	 * 添加租客list
 	 * 
 	 * @param holder
 	 */
@@ -117,12 +118,17 @@ public class ApartmentListAdapter extends BaseAdapter {
 		LinearLayout linearLayout = holder.linearLayout;
 		linearLayout.removeAllViews();
 		LayoutInflater inflater = LayoutInflater.from(context);
+		int[] imageId = { R.drawable.sample_1, R.drawable.sample_3,
+				R.drawable.sample_6 };
 		if (context == null) {
 			return;
 		}
 		for (int i = 0; i < 3; i++) {
 			View view = inflater.inflate(R.layout.item_house_adapter_item,
 					linearLayout, false);
+			CircleImageView circleImageView = (CircleImageView) view
+					.findViewById(R.id.iv_house_list_customer);
+			circleImageView.setImageResource(imageId[i]);
 			linearLayout.addView(view);
 		}
 	}
@@ -165,7 +171,8 @@ public class ApartmentListAdapter extends BaseAdapter {
 			return;
 		}
 		holder.scaleImageView.setImageWidth(width);
-		holder.scaleImageView.setImageHeight((int) (height / 3.5));
+		// holder.scaleImageView.setImageHeight((int) (height / 3.5));
+		holder.scaleImageView.setImageHeight((int) (height / 2.36));
 		holder.scaleImageView.setVisibility(View.VISIBLE);
 		FinalBitmapUtils.getInstance().displayImage(
 				DataSource.getImage_server() + imagetDesc.get(0)
@@ -175,10 +182,10 @@ public class ApartmentListAdapter extends BaseAdapter {
 			String photosDesc = imagetDesc.get(i);
 			ScaleImageView image = new ScaleImageView(context);
 			image.setImageWidth(width);
-			image.setImageHeight((int) (height / 3.5));
+			image.setImageHeight((int) (height / 2.36));
 			// CANCLE SET DEFAULT BACKGROUND
-//			FinalBitmapUtils.getInstance().setLoadPicture(
-//					R.drawable.bg_default_image);
+			// FinalBitmapUtils.getInstance().setLoadPicture(
+			// R.drawable.bg_default_image);
 			FinalBitmapUtils.getInstance().displayImage(
 					DataSource.getImage_server() + photosDesc
 							+ Constants.photosSize, image);

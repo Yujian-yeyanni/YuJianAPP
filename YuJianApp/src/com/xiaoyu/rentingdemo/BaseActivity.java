@@ -105,6 +105,5 @@ public class BaseActivity extends FragmentActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		// TODO add back listener
 	}
 }

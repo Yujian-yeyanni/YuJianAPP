@@ -40,7 +40,7 @@
 
     <style name="style_text_house_desc" parent="@style/layout_wrap_content">
         <item name="android:layout_height">29dp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/color_house_list_bottom_text</item>
         <item name="android:padding">@dimen/small_padding</item>
     </style>
 

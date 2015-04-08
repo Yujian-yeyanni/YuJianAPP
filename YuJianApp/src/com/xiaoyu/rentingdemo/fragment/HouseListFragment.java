@@ -176,6 +176,5 @@ public class HouseListFragment extends BaseFragment implements
 		super.onResume();
 		//clear edittext focus,Block pop keyboard
 		editTextSearch.clearFocus();
-//		setCurrentFragment(new HouseListFragment());
 	}
 }

@@ -55,31 +55,50 @@
         android:id="@+id/rl_have_login"
         style="@style/layout_fill_parent"
         android:layout_below="@id/include_house_list"
-        android:background="@color/white"
-        android:visibility="gone" >
+        android:background="@color/white" >
 
         <com.xiaoyu.rentingdemo.widget.ScaleImageView
             android:id="@+id/siv_personal_page_house_image"
             android:layout_width="fill_parent"
-            android:layout_height="130dp"
-            android:scaleType="fitXY"
+            android:layout_height="150dp"
             android:background="@drawable/bg_test"
-             />
+            android:scaleType="fitXY" />
 
         <ImageView
             android:id="@+id/iv_personal_page_photo"
             android:layout_width="@dimen/personal_photo_width"
             android:layout_height="@dimen/personal_photo_height"
             android:layout_marginLeft="@dimen/large_padding"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="125dp"
             android:background="@drawable/comm_headimg_def" />
+
+        <TextView
+            android:id="@+id/tv_personal_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/siv_personal_page_house_image"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/iv_personal_page_photo"
+            android:lineSpacingExtra="@dimen/xsmall_padding"
+            android:text="@string/str_personal_info_test"
+            android:textColor="@color/black" />
+
+        <View
+            android:id="@+id/view_personal_horizontal_line"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/line_height_or_width"
+            android:layout_below="@id/tv_personal_info"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/color_dashedline" />
 
         <ListView
             android:id="@+id/lv_personal_page"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/iv_personal_page_photo"
-            android:layout_marginTop="@dimen/standard_margin" >
+            android:layout_below="@id/view_personal_horizontal_line"
+            android:divider="@color/color_dashedline"
+            android:dividerHeight="@dimen/line_height_or_width" >
         </ListView>
     </RelativeLayout>
 

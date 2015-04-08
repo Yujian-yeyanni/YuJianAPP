@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60dp"
     android:background="@color/color_apartment_bg"
     android:descendantFocusability="blocksDescendants" >
 
-    <ImageView
+    <com.xiaoyu.rentingdemo.widget.CircleImageView
         android:id="@+id/iv_house_list_customer"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/standard_margin"
         android:layout_marginTop="@dimen/standard_margin"
-        android:background="@drawable/comm_headimg_def" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/sample_1" />
 
-    <TextView
-        android:id="@+id/tv_house_list_customer_name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/small_margin"
-        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/iv_house_list_customer"
-        android:text="二妹纸"
-        android:textColor="@color/color_text_customer" />
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tv_house_list_customer_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_house_list_customer_name"
-        android:layout_marginTop="@dimen/medium_margin"
-        android:layout_toRightOf="@id/iv_house_list_customer"
-        android:text="二妹纸二 二妹纸二 二妹纸从小就很二"
-        android:textColor="@color/color_text_customer" />
+        <TextView
+            android:id="@+id/tv_house_list_customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:text="二妹纸"
+            android:textColor="@color/color_text_customer" />
+
+        <TextView
+            android:id="@+id/tv_house_list_customer_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:text="二妹纸二 二妹纸二 二妹纸从小就很二"
+            android:textColor="@color/color_text_customer" />
+    </LinearLayout>
 
 </RelativeLayout>

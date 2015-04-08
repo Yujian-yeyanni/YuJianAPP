@@ -1,7 +1,5 @@
 package com.xiaoyu.rentingdemo;
 
-
-
 import com.baidu.mapapi.SDKInitializer;
 import com.xiaoyu.rentingdemo.util.ResourcesManager;
 
@@ -12,9 +10,9 @@ public class RentingApp extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
+
 		ResourcesManager.initConfig(getApplicationContext());
 		SDKInitializer.initialize(this);
-		
+		// SDKInitializer.initialize(getApplicationContext());
 	}
 }

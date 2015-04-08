@@ -122,59 +122,7 @@
 
                 <TextView
                     style="@style/style_house_detail_red_title"
-                    android:text="@string/str_house_detail_house_general" />
-
-                <LinearLayout
-                    android:id="@+id/ll_house_detail_general"
-                    style="@style/style_ll_house_detail" >
-
-                    <TextView
-                        style="@style/style_house_detail_title"
-                        android:text="@string/str_house_detail_house_general" />
-
-                    <TextView
-                        android:id="@+id/tv_house_detail_area"
-                        style="@style/style_house_detail_content"
-                        android:text="230.73㎡-6室-2/2层" />
-
-                    <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
-
-                    <TextView
-                        style="@style/style_house_detail_title"
-                        android:text="咨询电话" />
-
-                    <TextView
-                        android:id="@+id/tv_house_detail_tel"
-                        style="@style/style_house_detail_content"
-                        android:text="400-636-9090"
-                        android:textColor="@color/color_tel_text" />
-
-                    <com.xiaoyu.rentingdemo.widget.DashedLine style="@style/style_house_detail_dashedline" />
-
-                    <TextView
-                        style="@style/style_house_detail_title"
-                        android:text="@string/str_address" />
-
-                    <TextView
-                        android:id="@+id/tv_house_detail_house_address"
-                        style="@style/style_house_detail_content"
-                        android:paddingBottom="@dimen/standard_padding" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/style_house_detail_red_title"
-                    android:text="@string/str_house_detail_house_basic_info" />
-                <!-- 加入房间基本情况 -->
-
-                <LinearLayout
-                    android:id="@+id/ll_house_detail_house_basic_info"
-                    style="@style/style_ll_house_detail"
-                    android:orientation="vertical"
-                    android:padding="@dimen/standard_padding" >
-                </LinearLayout>
-
-                <TextView
-                    style="@style/style_house_detail_red_title"
+                    android:background="@color/gray"
                     android:text="@string/str_map" />
 
                 <RelativeLayout
@@ -201,10 +149,10 @@
 
         <ImageView
             android:id="@+id/iv_house_detail_tel"
-            android:layout_width="32dp"
+            android:layout_width="28dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/icon_phone" />
+            android:background="@drawable/icon_call" />
 
         <TextView
             style="@style/layout_wrap_content"

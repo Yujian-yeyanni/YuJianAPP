@@ -39,7 +39,7 @@
             style="@style/style_text_house_desc"
             android:layout_below="@id/ll_house_list_customer"
             android:layout_marginTop="@dimen/standard_margin"
-            android:textColor="@color/black" />
+            android:textColor="@color/color_house_list_bottom_text" />
 
         <TextView
             android:id="@+id/tv_item_apartment_house_area"
@@ -52,7 +52,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/xsmall_margin"
             android:paddingRight="@dimen/small_padding"
-            android:textColor="@color/black" />
+            android:textColor="@color/color_house_list_bottom_text" />
 
         <!--
              <TextView

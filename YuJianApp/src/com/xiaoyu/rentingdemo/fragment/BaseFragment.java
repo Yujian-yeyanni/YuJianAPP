@@ -1,9 +1,5 @@
 package com.xiaoyu.rentingdemo.fragment;
 
-import com.xiaoyu.rentingdemo.BaseActivity;
-import com.xiaoyu.rentingdemo.R;
-import com.xiaoyu.rentingdemo.util.MLog;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -21,6 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.xiaoyu.rentingdemo.BaseActivity;
+import com.xiaoyu.rentingdemo.R;
+
 public class BaseFragment extends Fragment implements OnClickListener,
 		TextWatcher {
 
@@ -35,6 +34,7 @@ public class BaseFragment extends Fragment implements OnClickListener,
 	protected ImageView imageViewPersonal;
 	protected TextView textViewCity;
 	protected TextView textViewSeniorSearch;
+	protected View viewCommLine;
 	protected int screenWidth;
 	protected int screenHeight;
 
@@ -88,6 +88,7 @@ public class BaseFragment extends Fragment implements OnClickListener,
 		imageViewPersonal = (ImageView) viewGroup
 				.findViewById(R.id.iv_comm_top_personal);
 		textViewCity = (TextView) viewGroup.findViewById(R.id.tv_comm_top_city);
+		viewCommLine = viewGroup.findViewById(R.id.view_comm_top_line);
 		textViewSeniorSearch.setVisibility(View.VISIBLE);
 	}
 
@@ -149,7 +150,7 @@ public class BaseFragment extends Fragment implements OnClickListener,
 			skipToFragment(new PersonalFragment(), R.id.fl_content, true);
 			break;
 		case R.id.tv_comm_top_senior_search:
-			// TODO SKIP TO SENIOR SEARCH PAGE
+			skipToFragment(new SearchFragment(), R.id.fl_content, true);
 			break;
 		default:
 			break;
@@ -170,9 +171,10 @@ public class BaseFragment extends Fragment implements OnClickListener,
 		// add change while text update in edittext
 		if (s.length() > 0) {
 			textViewSeniorSearch.setVisibility(View.GONE);
+			viewCommLine.setVisibility(View.GONE);
 		} else {
 			textViewSeniorSearch.setVisibility(View.VISIBLE);
+			viewCommLine.setVisibility(View.VISIBLE);
 		}
 	}
-
 }

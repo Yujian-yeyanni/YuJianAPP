@@ -1,19 +1,24 @@
 package com.xiaoyu.rentingdemo.fragment;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.UiSettings;
-import com.baidu.mapapi.model.LatLng;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.adapter.ViewPagerAdapter;
 import com.xiaoyu.rentingdemo.data.bean.RoomBean;
@@ -24,17 +29,6 @@ import com.xiaoyu.rentingdemo.util.MLog;
 import com.xiaoyu.rentingdemo.util.Utils;
 import com.xiaoyu.rentingdemo.widget.QualityLabelView;
 import com.xiaoyu.rentingdemo.widget.ScaleImageView;
-
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class HouseDetailFragment extends BaseFragment implements
 		OnClickListener {
@@ -51,12 +45,14 @@ public class HouseDetailFragment extends BaseFragment implements
 	private TextView textViewRoomPrice;
 	private TextView textViewRoomType;
 	private TextView textViewRoomAddress;
-	private LinearLayout layoutRoomFeature;//add house label layout
+	private LinearLayout layoutRoomFeature;// add house label layout
 	private TextView textViewPublicFacilities;
-	private TextView textViewRoomArea;
-	private TextView textViewTel;
-	private TextView textViewAddress;
-	private LinearLayout layoutHouseCondition;
+//	private TextView textViewRoomArea;
+//	private TextView textViewTel;
+//	private TextView textViewAddress;
+//	private LinearLayout layoutHouseCondition;
+
+	private RelativeLayout layoutOrderTel; // order layout
 
 	private List<String> roomPictureList;
 	private RoomBean roomBean;
@@ -82,7 +78,7 @@ public class HouseDetailFragment extends BaseFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		layoutId = R.layout.fragment_house_detail;
+		layoutId = R.layout.fragment_house_detail_test;
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
@@ -111,16 +107,19 @@ public class HouseDetailFragment extends BaseFragment implements
 		textViewPublicFacilities = (TextView) rootView
 				.findViewById(R.id.tv_house_detail_public_facilities_content);
 
-		textViewRoomArea = (TextView) rootView
-				.findViewById(R.id.tv_house_detail_area);
-		textViewTel = (TextView) rootView
-				.findViewById(R.id.tv_house_detail_tel);
-		textViewAddress = (TextView) rootView
-				.findViewById(R.id.tv_house_detail_house_address);
-		layoutHouseCondition = (LinearLayout) rootView
-				.findViewById(R.id.ll_house_detail_house_basic_info);
+//		textViewRoomArea = (TextView) rootView
+//				.findViewById(R.id.tv_house_detail_area);
+//		textViewTel = (TextView) rootView
+//				.findViewById(R.id.tv_house_detail_tel);
+//		textViewAddress = (TextView) rootView
+//				.findViewById(R.id.tv_house_detail_house_address);
+//		layoutHouseCondition = (LinearLayout) rootView
+//				.findViewById(R.id.ll_house_detail_house_basic_info);
 		scaleImageView = (ScaleImageView) rootView
 				.findViewById(R.id.siv_house_detail_map_image);
+
+		layoutOrderTel = (RelativeLayout) rootView
+				.findViewById(R.id.rl_house_detail_bottom);
 
 		setData();
 		initMapView();
@@ -138,8 +137,9 @@ public class HouseDetailFragment extends BaseFragment implements
 		textViewRoomPrice.setText("￥" + roomBean.getMinPrice() / 100);
 		String strTypeFormat = getActivity().getText(
 				R.string.str_format_house_type).toString();
+		// TODO change room name show
 		String strTypeInfo = String.format(strTypeFormat,
-				roomBean.getRoomName());
+				Utils.getUpperCase(roomBean.getRoomName()));
 		textViewRoomType.setText(strTypeInfo);
 		textViewRoomAddress.setText(roomBean.getH_address());
 		textViewPublicFacilities.setText("储物区" + " " + "餐桌" + " " + "餐椅" + " "
@@ -151,14 +151,14 @@ public class HouseDetailFragment extends BaseFragment implements
 				.getH_hourseArea(), Utils.getHouseShape(
 				roomBean.getH_hourseShape(), Constants.HOUSE_ROOM), roomBean
 				.getH_floor());
-		textViewRoomArea.setText(strHouseAreaInfo);
-		textViewAddress.setText(roomBean.getH_district()
-				+ roomBean.getH_street() + roomBean.getH_villageName());
-		
+//		textViewRoomArea.setText(strHouseAreaInfo);
+//		textViewAddress.setText(roomBean.getH_district()
+//				+ roomBean.getH_street() + roomBean.getH_villageName());
+
+		// add label view
 		QualityLabelView labelView = new QualityLabelView(getActivity());
-		//TODO add label
 		labelView.setLabelView(layoutRoomFeature, 5);
-		addHouseRoomList(layoutHouseCondition, houseRoomList);
+//		addHouseRoomList(layoutHouseCondition, houseRoomList);
 	}
 
 	/**
@@ -185,15 +185,16 @@ public class HouseDetailFragment extends BaseFragment implements
 			TextView textViewRoomPrice = (TextView) view
 					.findViewById(R.id.tv_room_price);
 			RoomBean roomBean = houseRoomList.get(i);
-			// update home background 
+			// update home background
 			if (roomBean.getId() == this.roomBean.getId()) {
-				relativeLayout.setBackgroundResource(R.drawable.bg_room_list_red);
+				relativeLayout
+						.setBackgroundResource(R.drawable.bg_room_list_red);
 			}
 			String strConditionFormat = getActivity().getText(
 					R.string.str_format_house_condition).toString();
 			String strConditonInfo = String.format(strConditionFormat,
-					roomBean.getRoomName(), roomBean.getTowards(),
-					roomBean.getRoomArea());
+					Utils.getUpperCase(roomBean.getRoomName()),
+					roomBean.getTowards(), roomBean.getRoomArea());
 			textViewRoomCondition.setText(strConditonInfo);
 			textViewRoomPrice.setText("￥" + roomBean.getMinPrice() / 100);
 			layoutHouseCondition.addView(view);
@@ -208,9 +209,12 @@ public class HouseDetailFragment extends BaseFragment implements
 		int imageWith = 0;
 		scaleImageView.setVisibility(View.VISIBLE);
 		scaleImageView.setImageWidth(screenWidth);
-		scaleImageView.setImageHeight(320); // set image height
+//		scaleImageView.setImageHeight(320); // set image height
+		scaleImageView.setImageHeight(Utils.Dp2Px(getActivity(), 300));
 		if (screenWidth >= Constants.MAX_SCREEN_WIDTH) {
 			imageWith = Constants.CHANGED_SCREEN_WIDTH;
+		}else {
+			imageWith = screenWidth;
 		}
 		String imageUrlFormat = Constants.BaiduImageURL;
 		String imageUrlInfo = String.format(
@@ -243,6 +247,8 @@ public class HouseDetailFragment extends BaseFragment implements
 	public void setLinstener() {
 		super.setLinstener();
 		scaleImageView.setOnClickListener(this);
+		layoutOrderTel.setOnClickListener(this);
+//		textViewTel.setOnClickListener(this);
 		initViewPager();
 	}
 
@@ -281,7 +287,7 @@ public class HouseDetailFragment extends BaseFragment implements
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.siv_house_detail_map_image:
-			//SKIP TO ADDRESS AROUND FRAGMNET
+			// SKIP TO ADDRESS AROUND FRAGMNET
 			AddressAroundFragment aroundFragment = new AddressAroundFragment();
 			Bundle bundle = new Bundle();
 			bundle.putString(Constants.KEY_POI_CITY, roomBean.getH_city());
@@ -290,10 +296,45 @@ public class HouseDetailFragment extends BaseFragment implements
 			aroundFragment.setArguments(bundle);
 			addToFragment(aroundFragment, R.id.fl_content, true);
 			break;
+		case R.id.tv_house_detail_tel:
+		case R.id.rl_house_detail_bottom:
+			// prompt the call confirm dialog
+			showConfirmDialog(getText(R.string.str_confirm_call).toString());
+			break;
 		default:
 			break;
 		}
+	}
 
+	/**
+	 * confirm call dialog
+	 * 
+	 * @param promptMessage
+	 */
+	private void showConfirmDialog(String promptMessage) {
+		Dialog alertDialog = new AlertDialog.Builder(getActivity())
+				// .setTitle(promptMessage)
+				.setMessage(promptMessage)
+				.setIcon(R.drawable.icon_phone)
+				.setPositiveButton(R.string.str_confirm,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent intent = new Intent(Intent.ACTION_CALL,
+										Uri.parse(Constants.TEL));
+								startActivity(intent);
+							}
+						})
+				.setNegativeButton(R.string.str_cancel,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+							}
+						}).create();
+		alertDialog.setCanceledOnTouchOutside(false);
+		alertDialog.show();
 	}
 
 	@Override
@@ -310,4 +351,5 @@ public class HouseDetailFragment extends BaseFragment implements
 	public void onPause() {
 		super.onPause();
 	}
+
 }

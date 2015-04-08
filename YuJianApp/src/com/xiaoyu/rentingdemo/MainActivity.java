@@ -1,16 +1,13 @@
 package com.xiaoyu.rentingdemo;
 
+import android.content.Context;
+import android.os.Bundle;
+
 import com.xiaoyu.rentingdemo.data.action.GetAllRoomListAction;
 import com.xiaoyu.rentingdemo.data.action.GetConfigAction;
 import com.xiaoyu.rentingdemo.fragment.HouseListFragment;
 import com.xiaoyu.rentingdemo.network.HttpHandler;
 import com.xiaoyu.rentingdemo.network.NoticHandler;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
-import android.view.Menu;
-import android.widget.FrameLayout;
 
 public class MainActivity extends BaseActivity implements NoticHandler {
 
@@ -41,7 +38,7 @@ public class MainActivity extends BaseActivity implements NoticHandler {
 		if (handler instanceof GetAllRoomListAction) {
 			// SKIP TO PICTURE SHOW PAGE
 			skipToFragmentByContentId(new HouseListFragment(),
-					R.id.fl_content, true);
+					R.id.fl_content, false);
 		}
 	}
 

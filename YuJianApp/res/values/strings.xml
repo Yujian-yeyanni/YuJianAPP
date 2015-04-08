@@ -11,6 +11,7 @@
     <string name="str_apartment_italic">/</string>
     <string name="str_house_price_suffix">元/月</string>
     <string name="str_filter">条件筛选</string>
+    <string name="str_top_hint_msg">请输入地标,商圈,景点</string>
 
     <!-- 客房详情 -->
     <string name="str_house_detail_house_des">%1$s\n【%2$s-%3$s】</string>
@@ -46,6 +47,7 @@
     <string name="str_input_password">请输入密码</string>
     <string name="str_login">登录</string>
     <string name="str_register">注册</string>
+    <string name="str_personal_info_test">Hello\n男\t25岁\t上海\t徐汇区</string>
 
     <!-- 客房详情label -->
     <string name="str_free_wifi">免费wifi</string>
@@ -54,9 +56,26 @@
     <string name="str_timely_fix">及时维修</string>
     <string name="str_safety_protection">一客一锁</string>
     <string name="str_quality_zone">品质空间</string>
-    
+
     <!-- 加载dialog弹出消息 -->
     <string name="str_loading_error_message">加载错误</string>
     <string name="str_loading_message">正在加载</string>
+
+    <!-- another pull to refresh listview string -->
+    <string name="double_click_exit">再次点击返回键退出</string>
+    <string name="app_list_header_refresh_down">下拉刷新</string>
+    <string name="app_list_header_refresh">松手立即刷新</string>
+    <string name="app_list_loading">正在加载</string>
+    <string name="app_list_refresh_done">刷新完成</string>
+    <string name="str_seniro_search">高级搜索</string>
+
+    <!-- confirm call dialog -->
+    <string name="str_confirm_call">是否确认拨打电话</string>
+    <string name="str_confirm">确定</string>
+    <string name="str_cancel">取消</string>
+
+    <!-- 高级搜索 -->
+    <string name="str_area">区域</string>
+    <string name="str_rent">租金</string>
 
 </resources>

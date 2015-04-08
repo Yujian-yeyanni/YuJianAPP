@@ -27,6 +27,9 @@ public class BaseAction implements HttpHandler {
 
 	protected static final String GET_CONFIG = "config/list.json";
 	protected static final String KEY_IMAGE_SERVER = "image_server";
+	
+	//pageIndex
+	protected static final String KEY_PAGE_INDEX = "pageIndex";
 
 	public BaseAction(NoticHandler handler, Context context) {
 		this.context = context;

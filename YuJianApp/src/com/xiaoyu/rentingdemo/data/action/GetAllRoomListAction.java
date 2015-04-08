@@ -2,6 +2,8 @@ package com.xiaoyu.rentingdemo.data.action;
 
 import java.lang.reflect.Type;
 
+import net.tsz.afinal.http.AjaxParams;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,9 +35,11 @@ public class GetAllRoomListAction extends BaseAction {
 		this.context = context;
 	}
 
-	public void getAllRoomList(String cityPinyin) {
-		sendHttpRequest(null, HTTPRequest.GET, cityPinyin + "/list.json", true,
-				R.string.str_loading_message);
+	public void getAllRoomList(String cityPinyin, int pageIndex,boolean isShowDialog) {
+		AjaxParams params = new AjaxParams();
+		params.put(KEY_PAGE_INDEX, String.valueOf(pageIndex));
+		sendHttpRequest(params, HTTPRequest.GET, cityPinyin + "/list.json",
+				isShowDialog, R.string.str_loading_message);
 	}
 
 	@Override

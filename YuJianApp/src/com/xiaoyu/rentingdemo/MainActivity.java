@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity implements NoticHandler {
 		if (allRoomListAction == null || getConfigAction == null) {
 			return;
 		}
-		allRoomListAction.getAllRoomList("shanghai");
+		allRoomListAction.getAllRoomList("shanghai",1,true);
 		getConfigAction.getConfig();
 		mContext = this;
 	}

@@ -18,7 +18,7 @@ public class Constants {
 		POST, GET
 	}
 
-	public static final int COMM_PAGE_SIZE = 10;
+	public static final int COMM_PAGE_SIZE = 20;
 	public static final boolean DEBUG_ENABLE = true;
 	//
 	public static final int HOUSE_ROOM = 1001;

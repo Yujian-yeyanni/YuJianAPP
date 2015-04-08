@@ -47,10 +47,10 @@ public class HouseDetailFragment extends BaseFragment implements
 	private TextView textViewRoomAddress;
 	private LinearLayout layoutRoomFeature;// add house label layout
 	private TextView textViewPublicFacilities;
-	private TextView textViewRoomArea;
-	private TextView textViewTel;
-	private TextView textViewAddress;
-	private LinearLayout layoutHouseCondition;
+//	private TextView textViewRoomArea;
+//	private TextView textViewTel;
+//	private TextView textViewAddress;
+//	private LinearLayout layoutHouseCondition;
 
 	private RelativeLayout layoutOrderTel; // order layout
 
@@ -78,7 +78,7 @@ public class HouseDetailFragment extends BaseFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		layoutId = R.layout.fragment_house_detail;
+		layoutId = R.layout.fragment_house_detail_test;
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
@@ -107,14 +107,14 @@ public class HouseDetailFragment extends BaseFragment implements
 		textViewPublicFacilities = (TextView) rootView
 				.findViewById(R.id.tv_house_detail_public_facilities_content);
 
-		textViewRoomArea = (TextView) rootView
-				.findViewById(R.id.tv_house_detail_area);
-		textViewTel = (TextView) rootView
-				.findViewById(R.id.tv_house_detail_tel);
-		textViewAddress = (TextView) rootView
-				.findViewById(R.id.tv_house_detail_house_address);
-		layoutHouseCondition = (LinearLayout) rootView
-				.findViewById(R.id.ll_house_detail_house_basic_info);
+//		textViewRoomArea = (TextView) rootView
+//				.findViewById(R.id.tv_house_detail_area);
+//		textViewTel = (TextView) rootView
+//				.findViewById(R.id.tv_house_detail_tel);
+//		textViewAddress = (TextView) rootView
+//				.findViewById(R.id.tv_house_detail_house_address);
+//		layoutHouseCondition = (LinearLayout) rootView
+//				.findViewById(R.id.ll_house_detail_house_basic_info);
 		scaleImageView = (ScaleImageView) rootView
 				.findViewById(R.id.siv_house_detail_map_image);
 
@@ -151,14 +151,14 @@ public class HouseDetailFragment extends BaseFragment implements
 				.getH_hourseArea(), Utils.getHouseShape(
 				roomBean.getH_hourseShape(), Constants.HOUSE_ROOM), roomBean
 				.getH_floor());
-		textViewRoomArea.setText(strHouseAreaInfo);
-		textViewAddress.setText(roomBean.getH_district()
-				+ roomBean.getH_street() + roomBean.getH_villageName());
+//		textViewRoomArea.setText(strHouseAreaInfo);
+//		textViewAddress.setText(roomBean.getH_district()
+//				+ roomBean.getH_street() + roomBean.getH_villageName());
 
+		// add label view
 		QualityLabelView labelView = new QualityLabelView(getActivity());
-		// TODO add label
 		labelView.setLabelView(layoutRoomFeature, 5);
-		addHouseRoomList(layoutHouseCondition, houseRoomList);
+//		addHouseRoomList(layoutHouseCondition, houseRoomList);
 	}
 
 	/**
@@ -209,9 +209,12 @@ public class HouseDetailFragment extends BaseFragment implements
 		int imageWith = 0;
 		scaleImageView.setVisibility(View.VISIBLE);
 		scaleImageView.setImageWidth(screenWidth);
-		scaleImageView.setImageHeight(320); // set image height
+//		scaleImageView.setImageHeight(320); // set image height
+		scaleImageView.setImageHeight(Utils.Dp2Px(getActivity(), 300));
 		if (screenWidth >= Constants.MAX_SCREEN_WIDTH) {
 			imageWith = Constants.CHANGED_SCREEN_WIDTH;
+		}else {
+			imageWith = screenWidth;
 		}
 		String imageUrlFormat = Constants.BaiduImageURL;
 		String imageUrlInfo = String.format(
@@ -245,6 +248,7 @@ public class HouseDetailFragment extends BaseFragment implements
 		super.setLinstener();
 		scaleImageView.setOnClickListener(this);
 		layoutOrderTel.setOnClickListener(this);
+//		textViewTel.setOnClickListener(this);
 		initViewPager();
 	}
 
@@ -292,6 +296,7 @@ public class HouseDetailFragment extends BaseFragment implements
 			aroundFragment.setArguments(bundle);
 			addToFragment(aroundFragment, R.id.fl_content, true);
 			break;
+		case R.id.tv_house_detail_tel:
 		case R.id.rl_house_detail_bottom:
 			// prompt the call confirm dialog
 			showConfirmDialog(getText(R.string.str_confirm_call).toString());
@@ -340,7 +345,6 @@ public class HouseDetailFragment extends BaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		// setCurrentFragment(new HouseDetailFragment());
 	}
 
 	@Override

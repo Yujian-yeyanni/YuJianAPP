@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.xiaoyu.rentingdemo.R;
 import com.xiaoyu.rentingdemo.adapter.ApartmentListAdapter;
@@ -26,6 +27,7 @@ import com.xiaoyu.rentingdemo.network.NoticHandler;
 import com.xiaoyu.rentingdemo.util.Constants;
 import com.xiaoyu.rentingdemo.util.DataSource;
 import com.xiaoyu.rentingdemo.util.StringUtil;
+import com.xiaoyu.rentingdemo.util.ToastUtils;
 import com.xiaoyu.rentingdemo.widget.MyListView;
 import com.xiaoyu.rentingdemo.widget.pullrefresh.XListView.IXListViewListener;
 
@@ -49,6 +51,9 @@ public class HouseListFragment extends BaseFragment implements
 	private GetAllRoomListAction getAllRoomListAction;
 
 	private Handler handler;
+	private int nowPageIndex;
+
+	private int refreshType = LISTVIEW_NORMAL;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +91,7 @@ public class HouseListFragment extends BaseFragment implements
 			};
 		};
 		apartmentListAdapter = new ApartmentListAdapter(getActivity(), handler);
+		listViewPictures.setAdapter(apartmentListAdapter);
 		refreshHouseList(roomBeans);
 		super.findViewById(rootView);
 		setLinstener();
@@ -94,7 +100,6 @@ public class HouseListFragment extends BaseFragment implements
 	private void refreshHouseList(List<RoomBean> roomBeans) {
 		// refresh house list show
 		apartmentListAdapter.setRoomBeanList(roomBeans);
-		listViewPictures.setAdapter(apartmentListAdapter);
 		apartmentListAdapter.notifyDataSetChanged();
 	}
 
@@ -114,7 +119,7 @@ public class HouseListFragment extends BaseFragment implements
 		listViewPictures.setFocusable(true);
 		listViewPictures.setOnItemClickListener(this);
 		listViewPictures.setPullRefreshEnable(true);
-		listViewPictures.setPullLoadEnable(false);
+		listViewPictures.setPullLoadEnable(true);
 		listViewPictures.setXListViewListener(this);
 	}
 
@@ -145,9 +150,27 @@ public class HouseListFragment extends BaseFragment implements
 		if (handler instanceof GetRoomDetailAction) {
 			skipToFragment(new HouseDetailFragment(), R.id.fl_content, true);
 		} else if (handler instanceof GetAllRoomListAction) {
-			refreshHouseList(DataSource.getAllRoomListBean().getRoomList());
-			listViewPictures.setRefreshTime(StringUtil.formatTime(System
-					.currentTimeMillis()));
+			switch (refreshType) {
+			case LISTVIEW_REFRESH:
+				refreshHouseList(DataSource.getAllRoomListBean().getRoomList());
+				listViewPictures.setRefreshTime(StringUtil.formatTime(System
+						.currentTimeMillis()));
+				stopRefreshOrLoad(LISTVIEW_REFRESH);
+				break;
+			case LISTVIEW_LOAD_MORE:
+				// TODO SHOW LOAD MORE
+				for (RoomBean roomBean : DataSource.getAllRoomListBean()
+						.getRoomList()) {
+					roomBeans.add(roomBean);
+				}
+				refreshHouseList(roomBeans);
+				stopRefreshOrLoad(LISTVIEW_LOAD_MORE);
+				break;
+
+			default:
+				break;
+			}
+
 		}
 	}
 
@@ -163,18 +186,45 @@ public class HouseListFragment extends BaseFragment implements
 
 	@Override
 	public void onRefresh() {
-		getAllRoomListAction.getAllRoomList("shanghai");
+		getAllRoomListAction.getAllRoomList("shanghai", 1,true);
+		refreshType = LISTVIEW_REFRESH;
+		nowPageIndex = 1;
 	}
 
 	@Override
 	public void onLoadMore() {
-		//TODO SET LOADA MORE DATA
+		// TODO SET LOADA MORE DATA
+		refreshType = LISTVIEW_LOAD_MORE;
+		nowPageIndex++;
+		if (nowPageIndex > DataSource.getAllRoomListBean().getPageBean()
+				.getMaxPage()) {
+			listViewPictures.stopLoadMore();
+			listViewPictures.setNoDataLoad();
+			ToastUtils.showToast("没有更多数据");
+			return;
+		}
+		listViewPictures.setHasNewDataLoad();
+		getAllRoomListAction.getAllRoomList("shanghai", nowPageIndex,false);
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		//clear edittext focus,Block pop keyboard
+		// clear edittext focus,Block pop keyboard
 		editTextSearch.clearFocus();
+	}
+
+	/**
+	 * stop load more or refresh
+	 * 
+	 * @param refreshType
+	 */
+	public void stopRefreshOrLoad(int refreshType) {
+		if (refreshType == LISTVIEW_REFRESH) {
+			listViewPictures.stopRefresh();
+		} else if (refreshType == LISTVIEW_LOAD_MORE) {
+			listViewPictures.stopLoadMore();
+		}
+		refreshType = LISTVIEW_NORMAL;
 	}
 }

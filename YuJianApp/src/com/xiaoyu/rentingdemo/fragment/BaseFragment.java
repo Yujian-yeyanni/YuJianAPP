@@ -37,6 +37,11 @@ public class BaseFragment extends Fragment implements OnClickListener,
 	protected View viewCommLine;
 	protected int screenWidth;
 	protected int screenHeight;
+	
+	//THE STATUS OF LISTVIEW
+	protected static final int LISTVIEW_NORMAL = -1;
+	protected static final int LISTVIEW_REFRESH = 1;
+	protected static final int LISTVIEW_LOAD_MORE = 2;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

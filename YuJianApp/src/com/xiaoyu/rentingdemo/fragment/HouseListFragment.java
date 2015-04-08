@@ -51,7 +51,7 @@ public class HouseListFragment extends BaseFragment implements
 	private GetAllRoomListAction getAllRoomListAction;
 
 	private Handler handler;
-	private int nowPageIndex;
+	private int nowPageIndex = 1;
 
 	private int refreshType = LISTVIEW_NORMAL;
 
@@ -186,9 +186,11 @@ public class HouseListFragment extends BaseFragment implements
 
 	@Override
 	public void onRefresh() {
+		roomBeans.clear();
 		getAllRoomListAction.getAllRoomList("shanghai", 1,true);
 		refreshType = LISTVIEW_REFRESH;
 		nowPageIndex = 1;
+		listViewPictures.setHasNewDataLoad();
 	}
 
 	@Override
@@ -198,8 +200,8 @@ public class HouseListFragment extends BaseFragment implements
 		nowPageIndex++;
 		if (nowPageIndex > DataSource.getAllRoomListBean().getPageBean()
 				.getMaxPage()) {
-			listViewPictures.stopLoadMore();
 			listViewPictures.setNoDataLoad();
+			listViewPictures.stopLoadMore();
 			ToastUtils.showToast("没有更多数据");
 			return;
 		}

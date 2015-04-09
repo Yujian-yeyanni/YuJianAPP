@@ -50,7 +50,6 @@
             android:layout_height="@dimen/comm_top_search_height"
             android:layout_centerVertical="true"
             android:background="@color/trans"
-            android:hint="@string/str_top_hint_msg"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"

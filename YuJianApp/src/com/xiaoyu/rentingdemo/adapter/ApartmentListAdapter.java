@@ -171,9 +171,9 @@ public class ApartmentListAdapter extends BaseAdapter {
 			return;
 		}
 		holder.scaleImageView.setImageWidth(width);
-		// holder.scaleImageView.setImageHeight((int) (height / 3.5));
-		holder.scaleImageView.setImageHeight((int) (height / 2.36));
+		holder.scaleImageView.setImageHeight((int) (height / Constants.HIGH_SACLE));
 		holder.scaleImageView.setVisibility(View.VISIBLE);
+		holder.scaleImageView.setFocusable(false);
 		FinalBitmapUtils.getInstance().displayImage(
 				DataSource.getImage_server() + imagetDesc.get(0)
 						+ Constants.photosSize, holder.scaleImageView);
@@ -182,10 +182,8 @@ public class ApartmentListAdapter extends BaseAdapter {
 			String photosDesc = imagetDesc.get(i);
 			ScaleImageView image = new ScaleImageView(context);
 			image.setImageWidth(width);
-			image.setImageHeight((int) (height / 2.36));
-			// CANCLE SET DEFAULT BACKGROUND
-			// FinalBitmapUtils.getInstance().setLoadPicture(
-			// R.drawable.bg_default_image);
+			image.setImageHeight((int) (height / Constants.HIGH_SACLE));
+			
 			FinalBitmapUtils.getInstance().displayImage(
 					DataSource.getImage_server() + photosDesc
 							+ Constants.photosSize, image);

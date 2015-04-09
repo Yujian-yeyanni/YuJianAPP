@@ -59,4 +59,8 @@ public class Constants {
 	
 	public static final int CAMERA = 0;
 	public static final int PHOTO = 1;
+	
+	public static final double HIGH_SACLE = 2.36;
+	
+	public static final int  COMM_TOP_HINT_SIZE = 13;
 }

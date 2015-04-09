@@ -36,7 +36,7 @@
 
     <!-- comm top -->
     <dimen name="comm_top_height">45dp</dimen>
-    <dimen name="comm_top_search_height">35dp</dimen>
+    <dimen name="comm_top_search_height">32dp</dimen>
     <dimen name="comm_top_search_width">35dp</dimen>
     <dimen name="image_address_around_width_height">25dp</dimen>
 

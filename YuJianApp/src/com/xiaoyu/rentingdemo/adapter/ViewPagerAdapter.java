@@ -17,8 +17,8 @@ import com.xiaoyu.rentingdemo.util.MLog;
 import com.xiaoyu.rentingdemo.widget.ScaleImageView;
 
 /**
- * adapter and page change listener for viewPager 
- *  
+ * adapter and page change listener for viewPager
+ * 
  * @author annieye
  * 
  */
@@ -36,7 +36,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 	private int nowItemPosition;
 	private Handler handler;
 
-	//init viewpageradapter
+	// init viewpageradapter
 	public ViewPagerAdapter(List<ScaleImageView> mListViews,
 			TextView textViewNowcount, Context context,
 			ScaleImageView scaleImageView, int nowItemPosition, Handler handler) {
@@ -51,7 +51,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		 container.removeView(mListViews.get(position % mListViews.size()));
+		container.removeView(mListViews.get(position % mListViews.size()));
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 			// handler something
 			MLog.e(TAG, e);
 		}
-		//TODO  test now positon
+		// TODO test now positon
 		MLog.e(TAG, String.valueOf(position));
 		return mListViews.get(position % mListViews.size());
 	}
@@ -94,6 +94,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
+		//TODO  HIDE IAMGEVIEW
 		if (imageView == null) {
 			return;
 		}
@@ -102,6 +103,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void onPageScrolled(int position, float arg1, int arg2) {
+		
 	}
 
 	@Override

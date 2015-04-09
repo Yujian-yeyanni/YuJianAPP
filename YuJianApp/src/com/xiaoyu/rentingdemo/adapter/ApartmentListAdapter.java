@@ -30,6 +30,8 @@ public class ApartmentListAdapter extends BaseAdapter {
 	private int height; // screen height
 	private Handler handler;
 	private int nowPosition;
+	
+	private FinalBitmapUtils finalBitmapUtils;
 
 	public ApartmentListAdapter(Context context, Handler handler) {
 		this.context = context;
@@ -38,6 +40,8 @@ public class ApartmentListAdapter extends BaseAdapter {
 				.getSystemService(Context.WINDOW_SERVICE);
 		width = wm.getDefaultDisplay().getWidth();
 		height = wm.getDefaultDisplay().getHeight();
+		finalBitmapUtils = FinalBitmapUtils.getInstance();
+		finalBitmapUtils.setFailPicture(R.drawable.bg_default_image);
 	}
 
 	public void setRoomBeanList(List<RoomBean> roomBeans) {
@@ -94,9 +98,8 @@ public class ApartmentListAdapter extends BaseAdapter {
 			holder = (ViewHolder) conventView.getTag();
 		}
 		// set viewpager height
-		holder.viewPager.getLayoutParams().height = (int) (height / 2.5);
-		// default image url
-		// "http://7qn8hl.com1.z0.glb.clouddn.com/E0BC579C72B249A5AAF89BBBB4F84653.jpg"
+		holder.viewPager.getLayoutParams().height = (int) (height / Constants.VIEW_PAGER_HIGH_SCALE);
+		
 		if (roomBeans == null) {
 			return null;
 		}
@@ -171,10 +174,10 @@ public class ApartmentListAdapter extends BaseAdapter {
 			return;
 		}
 		holder.scaleImageView.setImageWidth(width);
-		holder.scaleImageView.setImageHeight((int) (height / Constants.HIGH_SACLE));
+		holder.scaleImageView
+				.setImageHeight((int) (height / Constants.HIGH_SACLE));
 		holder.scaleImageView.setVisibility(View.VISIBLE);
-		holder.scaleImageView.setFocusable(false);
-		FinalBitmapUtils.getInstance().displayImage(
+		finalBitmapUtils.displayImage(
 				DataSource.getImage_server() + imagetDesc.get(0)
 						+ Constants.photosSize, holder.scaleImageView);
 
@@ -183,10 +186,9 @@ public class ApartmentListAdapter extends BaseAdapter {
 			ScaleImageView image = new ScaleImageView(context);
 			image.setImageWidth(width);
 			image.setImageHeight((int) (height / Constants.HIGH_SACLE));
-			
 			FinalBitmapUtils.getInstance().displayImage(
 					DataSource.getImage_server() + photosDesc
-							+ Constants.photosSize, image);
+					+ Constants.photosSize, image);
 			imageViews.add(image);
 		}
 		holder.textViewAllCount.setText(String.valueOf(imagetDesc.size()));

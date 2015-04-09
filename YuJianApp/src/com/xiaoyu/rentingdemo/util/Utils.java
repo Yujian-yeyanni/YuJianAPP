@@ -6,10 +6,17 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.xiaoyu.rentingdemo.R;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -172,4 +179,26 @@ public class Utils {
 				(int) height, matrix, true);
 		return bitmap;
 	}
+
+	/**
+	 * set editText hint text size
+	 * 
+	 * @param editText
+	 * @param strHint
+	 */
+	public static void setHintSize(EditText editText, String strHint) {
+		// 新建一个可以添加属性的文本对象
+		SpannableString ss = new SpannableString(strHint);
+
+		// 新建一个属性对象,设置文字的大小
+		AbsoluteSizeSpan ass = new AbsoluteSizeSpan(
+				Constants.COMM_TOP_HINT_SIZE, true);
+
+		// 附加属性到文本
+		ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+		// 设置hint
+		editText.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
+	}
+
 }

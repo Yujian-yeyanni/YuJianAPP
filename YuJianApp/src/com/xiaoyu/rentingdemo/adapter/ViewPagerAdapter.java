@@ -2,27 +2,23 @@ package com.xiaoyu.rentingdemo.adapter;
 
 import java.util.List;
 
-import com.xiaoyu.rentingdemo.util.Constants;
-import com.xiaoyu.rentingdemo.util.MLog;
-import com.xiaoyu.rentingdemo.widget.ScaleImageView;
-
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.xiaoyu.rentingdemo.util.Constants;
+import com.xiaoyu.rentingdemo.util.MLog;
+import com.xiaoyu.rentingdemo.widget.ScaleImageView;
 
 /**
- * adapter and pagechangelistener for viewpager 
- *  
+ * adapter and page change listener for viewPager
+ * 
  * @author annieye
  * 
  */
@@ -40,7 +36,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 	private int nowItemPosition;
 	private Handler handler;
 
-	//init viewpageradapter
+	// init viewpageradapter
 	public ViewPagerAdapter(List<ScaleImageView> mListViews,
 			TextView textViewNowcount, Context context,
 			ScaleImageView scaleImageView, int nowItemPosition, Handler handler) {
@@ -55,7 +51,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		 container.removeView(mListViews.get(position % mListViews.size()));
+		container.removeView(mListViews.get(position % mListViews.size()));
 	}
 
 	@Override
@@ -81,6 +77,8 @@ public class ViewPagerAdapter extends PagerAdapter implements
 			// handler something
 			MLog.e(TAG, e);
 		}
+		// TODO test now positon
+		MLog.e(TAG, String.valueOf(position));
 		return mListViews.get(position % mListViews.size());
 	}
 
@@ -96,6 +94,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
+		//TODO  HIDE IAMGEVIEW
 		if (imageView == null) {
 			return;
 		}
@@ -104,6 +103,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void onPageScrolled(int position, float arg1, int arg2) {
+		
 	}
 
 	@Override

@@ -5,7 +5,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
 import android.text.TextWatcher;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +23,8 @@ import android.widget.TextView;
 
 import com.xiaoyu.rentingdemo.BaseActivity;
 import com.xiaoyu.rentingdemo.R;
+import com.xiaoyu.rentingdemo.util.Constants;
+import com.xiaoyu.rentingdemo.util.Utils;
 
 public class BaseFragment extends Fragment implements OnClickListener,
 		TextWatcher {
@@ -37,8 +43,8 @@ public class BaseFragment extends Fragment implements OnClickListener,
 	protected View viewCommLine;
 	protected int screenWidth;
 	protected int screenHeight;
-	
-	//THE STATUS OF LISTVIEW
+
+	// THE STATUS OF LISTVIEW
 	protected static final int LISTVIEW_NORMAL = -1;
 	protected static final int LISTVIEW_REFRESH = 1;
 	protected static final int LISTVIEW_LOAD_MORE = 2;
@@ -95,6 +101,9 @@ public class BaseFragment extends Fragment implements OnClickListener,
 		textViewCity = (TextView) viewGroup.findViewById(R.id.tv_comm_top_city);
 		viewCommLine = viewGroup.findViewById(R.id.view_comm_top_line);
 		textViewSeniorSearch.setVisibility(View.VISIBLE);
+		
+		Utils.setHintSize(editTextSearch, getText(R.string.str_top_hint_msg)
+				.toString()); // set edittext hint size
 	}
 
 	/**

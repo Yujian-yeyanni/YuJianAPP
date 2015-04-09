@@ -38,6 +38,8 @@ public class Constants {
 	// baidumap static image url without label
 	public static final String BaiDuStaticImageUrl = "http://api.map.baidu.com/staticimage?center=%1$s&width=%2$s&height=%3$s&zoom=18&markers=%4$s&markerStyles=-1";
 
+	public static final String DEFAULT_IMAGE_URL = "http://7qn8hl.com1.z0.glb.clouddn.com/E0BC579C72B249A5AAF89BBBB4F84653.jpg";
+	
 	public static final String KEY_POI_ADDRESS = "poi_address";
 	public static final String KEY_POI_CITY = "poi_city";
 	public static final String KEY_POI_VILLAGE_NAME = "poi_village_name";
@@ -54,13 +56,13 @@ public class Constants {
 			R.drawable.ic_hospital, R.drawable.ic_market,
 			R.drawable.ic_entertainment };
 
-	
 	public final static String TEL = "tel:400-636-9090";
-	
+
 	public static final int CAMERA = 0;
 	public static final int PHOTO = 1;
-	
+
 	public static final double HIGH_SACLE = 2.36;
-	
-	public static final int  COMM_TOP_HINT_SIZE = 13;
+	public static final double VIEW_PAGER_HIGH_SCALE = 2.5;
+
+	public static final int COMM_TOP_HINT_SIZE = 13;
 }

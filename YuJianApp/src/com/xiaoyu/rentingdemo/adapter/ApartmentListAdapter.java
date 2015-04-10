@@ -30,7 +30,7 @@ public class ApartmentListAdapter extends BaseAdapter {
 	private int height; // screen height
 	private Handler handler;
 	private int nowPosition;
-	
+
 	private FinalBitmapUtils finalBitmapUtils;
 
 	public ApartmentListAdapter(Context context, Handler handler) {
@@ -99,7 +99,7 @@ public class ApartmentListAdapter extends BaseAdapter {
 		}
 		// set viewpager height
 		holder.viewPager.getLayoutParams().height = (int) (height / Constants.VIEW_PAGER_HIGH_SCALE);
-		
+
 		if (roomBeans == null) {
 			return null;
 		}
@@ -186,21 +186,25 @@ public class ApartmentListAdapter extends BaseAdapter {
 			ScaleImageView image = new ScaleImageView(context);
 			image.setImageWidth(width);
 			image.setImageHeight((int) (height / Constants.HIGH_SACLE));
-			FinalBitmapUtils.getInstance().displayImage(
-					DataSource.getImage_server() + photosDesc
-					+ Constants.photosSize, image);
+			// match image url
+			String imageUrl = DataSource.getImage_server() + photosDesc
+					+ Constants.photosSize;
+			FinalBitmapUtils.getInstance().displayImage(imageUrl, image);
 			imageViews.add(image);
 		}
+		// TODO FIX VIEWPAGE WHEN INDEX EQUALS 0 IS NOT SHOW
 		holder.textViewAllCount.setText(String.valueOf(imagetDesc.size()));
 		holder.viewPager.setAdapter(new ViewPagerAdapter(imageViews,
 				holder.textViewNowCount, context, holder.scaleImageView,
 				nowPosition, handler));
 		// add viewpager scroll lintener
-		holder.viewPager.setOnPageChangeListener(new ViewPagerAdapter(
-				imageViews, holder.textViewNowCount, context,
-				holder.scaleImageView, nowPosition, handler));
+		holder.viewPager.setOnPageChangeListener(new ViewPagerAdapter(context,imageViews,holder.textViewNowCount,holder.scaleImageView));
+//		holder.viewPager.setOnPageChangeListener(new ViewPagerAdapter(
+//				imageViews, holder.textViewNowCount, context,
+//				holder.scaleImageView, nowPosition, handler));
 		// set viewpager can roll cycle
-		holder.viewPager.setCurrentItem(imageViews.size() * 100);
+		holder.viewPager.setCurrentItem(imageViews.size() * 100 );
+		// holder.viewPager.setCurrentItem(0);
 
 	}
 

@@ -10,7 +10,7 @@ public class FinalBitmapUtils {
 
 	private static FinalBitmap finalBitmap = null;
 	private static FinalBitmapUtils finalBitmapUtils = null;
-	private static final int loadImageSize = 6;
+	private static final int loadImageSize = 5;
 
 	private FinalBitmapUtils() {
 
@@ -31,8 +31,7 @@ public class FinalBitmapUtils {
 			finalBitmap.configBitmapLoadThreadSize(loadImageSize);
 			finalBitmap.configDiskCachePath(Constants.DiskCachePath);
 			finalBitmap.configDiskCacheSize(1024 * 1024 * 10);
-			finalBitmap.configRecycleImmediately(false);
-			// finalBitmap.configRecycleImmediately(true);
+			finalBitmap.configRecycleImmediately(false); // 是否自动清除缓存
 		}
 		return finalBitmap;
 	}

@@ -36,6 +36,14 @@ public class ViewPagerAdapter extends PagerAdapter implements
 	private int nowItemPosition;
 	private Handler handler;
 
+	public ViewPagerAdapter(Context context, List<ScaleImageView> imageViews,
+			TextView textView, ScaleImageView imageView) {
+		super();
+		this.mListViews = imageViews;
+		this.textView = textView;
+		this.imageView = imageView;
+	}
+
 	// init viewpageradapter
 	public ViewPagerAdapter(List<ScaleImageView> mListViews,
 			TextView textViewNowcount, Context context,
@@ -51,12 +59,13 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		container.removeView(mListViews.get(position % mListViews.size()));
+		MLog.e(TAG, TAG + "destroyItemPositon" + position);
 	}
 
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		try {
+			container.removeView(mListViews.get(position % mListViews.size()));
 			container.addView(mListViews.get(position % mListViews.size()), 0);
 
 			mListViews.get(position % mListViews.size()).setOnClickListener(
@@ -74,7 +83,6 @@ public class ViewPagerAdapter extends PagerAdapter implements
 						}
 					});
 		} catch (Exception e) {
-			// handler something
 			MLog.e(TAG, e);
 		}
 		// TODO test now positon
@@ -94,7 +102,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
-		//TODO  HIDE IAMGEVIEW
+		// TODO HIDE IAMGEVIEW
 		if (imageView == null) {
 			return;
 		}
@@ -103,7 +111,7 @@ public class ViewPagerAdapter extends PagerAdapter implements
 
 	@Override
 	public void onPageScrolled(int position, float arg1, int arg2) {
-		
+
 	}
 
 	@Override

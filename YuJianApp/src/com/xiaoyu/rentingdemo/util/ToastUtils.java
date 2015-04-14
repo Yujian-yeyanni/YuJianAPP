@@ -25,7 +25,7 @@ public class ToastUtils {
 	 * 
 	 * @param strResId
 	 */
-	public static void shoToast(int strResId) {
+	public static void showToast(int strResId) {
 		Toast.makeText(ResourcesManager.getContext(), strResId,
 				Toast.LENGTH_SHORT).show();
 	}

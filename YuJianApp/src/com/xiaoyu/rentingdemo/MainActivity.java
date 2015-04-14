@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements NoticHandler {
 	@Override
 	public void HttpSuccess(HttpHandler handler) {
 		if (handler instanceof GetAllRoomListAction) {
-			// SKIP TO PICTURE SHOW PAGE
+			// SKIP TO HOUSE LIST PAGE
 			skipToFragmentByContentId(new HouseListFragment(),
 					R.id.fl_content, false);
 		}

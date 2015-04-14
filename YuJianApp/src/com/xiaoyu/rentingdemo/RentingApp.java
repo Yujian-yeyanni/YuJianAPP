@@ -12,7 +12,7 @@ public class RentingApp extends Application {
 		super.onCreate();
 
 		ResourcesManager.initConfig(getApplicationContext());
+		//init baidu map sdk
 		SDKInitializer.initialize(this);
-		// SDKInitializer.initialize(getApplicationContext());
 	}
 }

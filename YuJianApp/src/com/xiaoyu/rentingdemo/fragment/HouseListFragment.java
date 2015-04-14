@@ -202,7 +202,7 @@ public class HouseListFragment extends BaseFragment implements
 				.getMaxPage()) {
 			listViewPictures.setNoDataLoad();
 			listViewPictures.stopLoadMore();
-			ToastUtils.showToast("没有更多数据");
+			ToastUtils.showToast(R.string.xlistview_footer_load_no_data);
 			return;
 		}
 		listViewPictures.setHasNewDataLoad();

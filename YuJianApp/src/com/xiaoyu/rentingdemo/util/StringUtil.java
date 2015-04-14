@@ -11,12 +11,21 @@ import java.util.Locale;
  */
 public class StringUtil {
 
+	/**
+	 * JUDGE THE STRING IS NULL
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public static boolean isNull(String str) {
 		if (str == null || str.isEmpty()) {
 			return true;
 		}
 
 		if (str.equalsIgnoreCase("null")) {
+			return true;
+		}
+		if (str.equals("")) {
 			return true;
 		}
 
